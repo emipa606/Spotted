@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <MS.SettingsLabel>Motion Scanner</MS.SettingsLabel>
+  <MS.DelayRange>Base raid arrival</MS.DelayRange>
+  <MS.DelayRangeTooltip>Base raid arrival time after it has been discovered</MS.DelayRangeTooltip>
+  <MS.EdgeWalkIn>Walking in from the edge</MS.EdgeWalkIn>
+  <MS.EdgeDrop>Drop podding at the edge</MS.EdgeDrop>
+  <MS.EdgeWalkInGroups>Walking in form the edge(in groups)</MS.EdgeWalkInGroups>
+  <MS.EdgeDropGroups>Drop podding at the edge(in groups)</MS.EdgeDropGroups>
+  <MS.CenterDrop>Drop podding in the center</MS.CenterDrop>
+  <MS.RandomDrop>Drop podding randomly</MS.RandomDrop>
+  <MS.multiplier>Below 1 will reduce the delay for specific arrival method, above will increase it</MS.multiplier>
+  
+</LanguageData>

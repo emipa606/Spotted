@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Motion Scanner</name>
+	<author>TGPArcher</author>
+	<url></url>
+	<targetVersion>1.0.0</targetVersion>
+	<description>
+Have you ever wondered how to raiders manage to reach your colony unnoticed?
+Well this mod fixes that by adding a chance for your colonists to spot them valuable time before they reach your colony.
+But sometimes the raiders are more sneaky, to counter this a new long-range motion scanner has been added to the game which is increasing the chance to spot any raid.
+So draft your colonists and wait for their arrival.
+	
+More details:
+ * Motion Scanner requires tech "Long-range mineral scanner"
+ * Every colonist increases discovery chance with 0.5%
+ * Every motion scanner increases discovery chance with 20%
+ * Discovery chance is adjusted with difficulty, higher difficulties requiring more scanners or colonists
+	
+Requirements:
+ This mod requires HugsLib in orderd to run.
+ Install HugsLib and place it higher on the listitem
+	
+License:
+ Do what you want, but give the author credit.
+</description>
+</ModMetaData>

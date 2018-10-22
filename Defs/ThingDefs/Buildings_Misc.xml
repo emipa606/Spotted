@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+    <defName>MotionScanner</defName>
+    <label>motion scanner</label>
+	<thingClass>MotionScanner.Building_MotionScanner</thingClass>
+    <description>Long-range motion scanner capable of detecting enemy movement heading towards your colony at long distances</description>
+    <graphicData>
+      <texPath>Things/Buildings/MotionScanner</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3, 3)</drawSize>
+      <shadowData>
+        <volume>(1.4, 0.4, 1.4)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+    </graphicData>
+    <costList>
+      <Steel>400</Steel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>500</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Flickable"/>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <altitudeLayer>Building</altitudeLayer>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToBuild>4000</WorkToBuild>
+      <Flammability>0.5</Flammability>
+	  <SpottingPower>40.0</SpottingPower>
+	  <SpottingRange>2</SpottingRange>
+      <Beauty>-8</Beauty>
+    </statBases>
+    <fillPercent>0.40</fillPercent>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <pathCost>25</pathCost>
+    <designationCategory>Misc</designationCategory>
+    <rotatable>false</rotatable>
+    <canOverlapZones>false</canOverlapZones>
+    <size>(3, 3)</size>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <researchPrerequisites>
+      <li>LongRangeMineralScanner</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </ThingDef>
+</Defs>

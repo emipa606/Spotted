@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <MS.MotionDetected>Motion Detected</MS.MotionDetected>
+  <MS.LetterDescScanner>Scanners have detected critical movement around your colony. It seems hostile targets are coming towards your base.</MS.LetterDescScanner>
+  <MS.LetterDescColonist>The colonists have detected hostile targets coming towards your base.</MS.LetterDescColonist>
+  <MS.LetterTime>Data suggest they will arrive in about</MS.LetterTime>
+  
+</LanguageData>
