@@ -1,1 +1,1 @@
-# MotionScanner_1.0
+# MotionScanner [1.0]
