@@ -2,7 +2,7 @@
 using UnityEngine;
 using Verse;
 
-namespace MotionScanner
+namespace Spotted
 {
     class MotionScannerMod : Mod
     {

@@ -1,7 +1,7 @@
 ﻿using Harmony;
 using RimWorld;
 
-namespace MotionScanner
+namespace Spotted
 {
     [HarmonyPatch(typeof(PawnsArrivalModeWorker_CenterDrop), "TryResolveRaidSpawnCenter")]
     public static class CenterDrop_TryResolveRaidSpawnCenter_Patch
@@ -9,9 +9,9 @@ namespace MotionScanner
         [HarmonyPostfix]
         public static void DetectTryResolveRaidSpawnCenter_Postfix(PawnsArrivalModeWorker_CenterDrop __instance, IncidentParms parms, ref bool __result)
         {
-            if (!MotionScannerUtility.IncidentIsQueued(parms))
+            if (!SpotterUtility.IncidentIsQueued(parms))
             {
-                __result = !MotionScannerUtility.TryScanForMotion(parms);
+                __result = !SpotterUtility.TryScanForMotion(parms);
             }
         }
     }
@@ -22,9 +22,9 @@ namespace MotionScanner
         [HarmonyPostfix]
         public static void DetectTryResolveRaidSpawnCenter_Postfix(PawnsArrivalModeWorker_EdgeDrop __instance, IncidentParms parms, ref bool __result)
         {
-            if (!MotionScannerUtility.IncidentIsQueued(parms))
+            if (!SpotterUtility.IncidentIsQueued(parms))
             {
-                __result = !MotionScannerUtility.TryScanForMotion(parms);
+                __result = !SpotterUtility.TryScanForMotion(parms);
             }
         }
     }
@@ -35,9 +35,9 @@ namespace MotionScanner
         [HarmonyPostfix]
         public static void DetectTryResolveRaidSpawnCenter_Postfix(PawnsArrivalModeWorker_EdgeDropGroups __instance, IncidentParms parms, ref bool __result)
         {
-            if (!MotionScannerUtility.IncidentIsQueued(parms))
+            if (!SpotterUtility.IncidentIsQueued(parms))
             {
-                __result = !MotionScannerUtility.TryScanForMotion(parms);
+                __result = !SpotterUtility.TryScanForMotion(parms);
             }
         }
     }
@@ -48,9 +48,9 @@ namespace MotionScanner
         [HarmonyPostfix]
         public static void DetectTryResolveRaidSpawnCenter_Postfix(PawnsArrivalModeWorker_EdgeWalkIn __instance, IncidentParms parms, ref bool __result)
         {
-            if (!MotionScannerUtility.IncidentIsQueued(parms))
+            if (!SpotterUtility.IncidentIsQueued(parms))
             {
-                __result = !MotionScannerUtility.TryScanForMotion(parms);
+                __result = !SpotterUtility.TryScanForMotion(parms);
             }
         }
     }
@@ -61,9 +61,9 @@ namespace MotionScanner
         [HarmonyPostfix]
         public static void DetectTryResolveRaidSpawnCenter_Postfix(PawnsArrivalModeWorker_EdgeWalkInGroups __instance, IncidentParms parms, ref bool __result)
         {
-            if (!MotionScannerUtility.IncidentIsQueued(parms))
+            if (!SpotterUtility.IncidentIsQueued(parms))
             {
-                __result = !MotionScannerUtility.TryScanForMotion(parms);
+                __result = !SpotterUtility.TryScanForMotion(parms);
             }
         }
     }
@@ -74,9 +74,9 @@ namespace MotionScanner
         [HarmonyPostfix]
         public static void DetectTryResolveRaidSpawnCenter_Postfix(PawnsArrivalModeWorker_RandomDrop __instance, IncidentParms parms, ref bool __result)
         {
-            if (!MotionScannerUtility.IncidentIsQueued(parms))
+            if (!SpotterUtility.IncidentIsQueued(parms))
             {
-                __result = !MotionScannerUtility.TryScanForMotion(parms);
+                __result = !SpotterUtility.TryScanForMotion(parms);
             }
         }
     }

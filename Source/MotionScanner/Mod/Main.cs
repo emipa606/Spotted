@@ -2,14 +2,14 @@
 using System.Reflection;
 using Verse;
 
-namespace MotionScanner
+namespace Spotted
 {
     [StaticConstructorOnStartup]
     class Main
     {
         static Main()
         {
-            var harmony = HarmonyInstance.Create("TGPAcher.Rimworld.MotionScanner");
+            var harmony = HarmonyInstance.Create("TGPAcher.Rimworld.Spotted");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
     }

@@ -1,70 +1,49 @@
 ﻿using RimWorld;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using Verse;
 
-namespace MotionScanner
+namespace Spotted
 {
-    static class MotionScannerUtility
+    static class SpotterUtility
     {
         private static readonly string LetterLabel = "MS.MotionDetected";
         private static readonly float ColonistSpottingPower = 1f;
-
-        private static int PoweredMotionScannersCount(Map map)
-        {
-            int scannersCount = 0;
-            List<Thing> list = map.listerThings.ThingsMatching(ThingRequest.ForDef(ThingDefOf.MotionScanner));
-            foreach(var item in list)
-            {
-                if(item.Faction == Faction.OfPlayer)
-                {
-                    CompPowerTrader compPowerTrader = item.TryGetComp<CompPowerTrader>();
-                    if (compPowerTrader == null || compPowerTrader.PowerOn)
-                    {
-                        scannersCount += 1;
-                    }
-                }
-            }
-            
-            return scannersCount;
-        }
-
-        private static int ActiveColonistsCount(Map map)
-        {
-            int colonistsCount = map.mapPawns.ColonistsSpawnedCount;
-
-            return colonistsCount;
-        }
 
         private static float GetThreatScale()
         {
             return Find.Storyteller.difficulty.threatScale;
         }
 
-        private static float CalculateSpottingPower(Map map)
+        private static float CalculateSpottingPower(Map map, SpottersCounter spottersCounter)
         {
-            float discoveryPower = ActiveColonistsCount(map) * ColonistSpottingPower + PoweredMotionScannersCount(map) *
-                ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingPower);
-            float adjustedDiscoveryPower = discoveryPower / (float)Math.Sqrt(GetThreatScale());
-            
-            return adjustedDiscoveryPower;
+            float colonistPower = spottersCounter.ActiveColonistsCount() * ColonistSpottingPower;
+            float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingPower);
+            float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingPower);
+            float satellitePower = spottersCounter.PoweredSatelliteController() * ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingPower);
+
+            float discoveryPower = (colonistPower + watchtowerPower + scannerPower + satellitePower) / (float)Math.Sqrt(GetThreatScale());
+
+            return discoveryPower;
         }
 
-        private static int CalculateDelay(IncidentParms parms)
+        private static int CalculateDelay(IncidentParms parms, SpottersCounter spottersCounter)
         {
             float modifier = MotionScannerSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
-            float delay = ((MotionScannerSettings.allowedTimeRange.RandomInRange + PoweredMotionScannersCount((Map)parms.target) * 
-                ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingRange)) * modifier) * GenDate.TicksPerHour;
+            float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingRange);
+            float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingRange);
+            float satellitePower = spottersCounter.PoweredSatelliteController() * ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingRange);
+
+            float delay = ((MotionScannerSettings.allowedTimeRange.RandomInRange + watchtowerPower + scannerPower + satellitePower) * modifier) * GenDate.TicksPerHour;
             int globalDelay = Find.TickManager.TicksGame + (int)delay;
-            
+
             return globalDelay;
         }
 
-        private static string GetLetterText(int delay, Map map)
+        private static string GetLetterText(int delay, Map map, SpottersCounter spottersCounter)
         {
-            string description = (PoweredMotionScannersCount(map) > 0) ? "MS.LetterDescScanner".Translate() : "MS.LetterDescColonist".Translate();
+            string description = (spottersCounter.PoweredMotionScannersCount() > 0 || spottersCounter.PoweredSatelliteController() > 0) ? "MS.LetterDescScanner".Translate() : "MS.LetterDescColonist".Translate();
             StringBuilder letterText = new StringBuilder();
             letterText.AppendLine(description);
             letterText.Append("MS.LetterTime".Translate());
@@ -73,10 +52,10 @@ namespace MotionScanner
             return letterText.ToString();
         }
 
-        private static void DelayRaid(IncidentParms parms)
+        private static void DelayRaid(IncidentParms parms, SpottersCounter spottersCounter)
         {
-            int delay = CalculateDelay(parms);
-            Find.LetterStack.ReceiveLetter(LetterLabel.Translate(), GetLetterText(delay, (Map)parms.target), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target));
+            int delay = CalculateDelay(parms, spottersCounter);
+            Find.LetterStack.ReceiveLetter(LetterLabel.Translate(), GetLetterText(delay, (Map)parms.target, spottersCounter), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target));
 
             QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, parms), delay);
             Find.Storyteller.incidentQueue.Add(qi);
@@ -84,12 +63,13 @@ namespace MotionScanner
 
         public static bool TryScanForMotion(IncidentParms parms)
         {
-            if (CalculateSpottingPower((Map)parms.target) < new IntRange(0,100).RandomInRange)
+            SpottersCounter spottersCounter = new SpottersCounter((Map)parms.target);
+            if (CalculateSpottingPower((Map)parms.target, spottersCounter) < new IntRange(0,100).RandomInRange)
             {
                 return false;
             }
             
-            DelayRaid(parms);
+            DelayRaid(parms, spottersCounter);
             return true;
         }
 

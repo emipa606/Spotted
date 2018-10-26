@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace MotionScanner
+namespace Spotted
 {
     public class Building_MotionScanner : Building
     {

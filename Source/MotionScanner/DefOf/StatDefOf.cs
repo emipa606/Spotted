@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 
-namespace MotionScanner
+namespace Spotted
 {
     [DefOf]
     public class StatDefOf

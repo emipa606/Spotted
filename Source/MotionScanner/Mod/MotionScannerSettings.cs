@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace MotionScanner
+namespace Spotted
 {
     class MotionScannerSettings : ModSettings
     {
