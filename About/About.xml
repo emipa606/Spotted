@@ -1,20 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Motion Scanner</name>
+	<name>Spotted</name>
 	<author>TGPArcher</author>
 	<url></url>
 	<targetVersion>1.0.0</targetVersion>
 	<description>
-Have you ever wondered how to raiders manage to reach your colony unnoticed?
+Have you ever wondered how do raiders manage to reach your colony unnoticed?
 Well this mod fixes that by adding a chance for your colonists to spot them valuable time before they reach your colony.
-But sometimes the raiders are more sneaky, to counter this a new long-range motion scanner has been added to the game which is increasing the chance to spot any raid.
+But sometimes the raiders are more sneaky, to counter this new buildings have been added to the game which increase the chance to spot any raid.
 So draft your colonists and wait for their arrival.
 	
 More details:
+ * Watchtower requires not tech, good for tribal start
+	- The first accesible spotting building, not very effective and the distance it covers is limited but requires no power to run.
  * Motion Scanner requires tech "Long-range mineral scanner"
+	- An improvement over Watchtower as it can spot more raids and from longer distances
+ * Satellite Controlle requires tech "Multi-Analyser"
+	- The ultimate spotting computer, able to spot most of the raids from very long distances
  * Every colonist increases discovery chance with 0.5%
- * Every motion scanner increases discovery chance with 20%
- * Discovery chance is adjusted with difficulty, higher difficulties requiring more scanners or colonists
+ * Spotting capabilities of buildings can be seen on their stats
+ * Discovery power and range is cumulative so building more structures will increase your chance.
+ * Discovery chance is adjusted with difficulty, higher difficulties requiring more spotting buildings or colonists
 	
 Requirements:
  This mod requires HugsLib in orderd to run.
@@ -23,4 +29,5 @@ Requirements:
 License:
  Do what you want, but give the author credit.
 </description>
+
 </ModMetaData>
