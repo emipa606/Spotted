@@ -56,6 +56,9 @@
     <Compile Include="Mod\SpottedSettings.cs" />
     <Compile Include="DefOf\StatDefOf.cs" />
     <Compile Include="Patches\TryResolveRaidSpawnCenter_Patches.cs" />
+    <Compile Include="Utilities\DelayHolder.cs" />
+    <Compile Include="Utilities\RangedDelayHolder.cs" />
+    <Compile Include="Utilities\IDelayHolder.cs" />
     <Compile Include="Utilities\SpotterUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DefOf\ThingDefOf.cs" />

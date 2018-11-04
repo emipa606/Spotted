@@ -7,7 +7,7 @@ namespace Spotted
 {
     public class Alert_Spotted : Alert
     {
-        private static List<int> incidentTicks = new List<int>();
+        private static List<IDelayHolder> incidentTicks = new List<IDelayHolder>();
 
         public Alert_Spotted()
         {
@@ -20,7 +20,7 @@ namespace Spotted
             StringBuilder explanation = new StringBuilder();
             foreach(var incident in incidentTicks)
             {
-                explanation.AppendLine("S.IncomingRaid".Translate() + " " + (incident - Find.TickManager.TicksGame).ToStringTicksToPeriodVerbose(true, true));
+                explanation.AppendLine("S.IncomingRaid".Translate() + " " + incident.ToStringRemainingDelayToPeriod());
             }
 
             return explanation.ToString();
@@ -28,13 +28,13 @@ namespace Spotted
 
         public override AlertReport GetReport()
         {
-            incidentTicks.RemoveAll(tick => Find.TickManager.TicksGame > tick);
+            incidentTicks.RemoveAll(tick => tick.GetRemainingTicks() < 0);
             return incidentTicks.Count > 0;
         }
 
-        public static void AddIncident(int incidentTick)
+        public static void AddIncident(IDelayHolder incidentTick)
         {
-            if (incidentTick < 0)
+            if (incidentTick.GetGlobalDelay() < 0)
                 return;
 
             incidentTicks.Add(incidentTick);

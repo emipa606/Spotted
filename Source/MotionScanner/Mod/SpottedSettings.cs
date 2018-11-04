@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Verse;
 
 namespace Spotted
@@ -39,6 +40,14 @@ namespace Spotted
                 ["CenterDrop"] = centerDropModifier,
                 ["RandomDrop"] = randomDropModifier
             };
+        }
+
+        public static Type GetDelayType()
+        {
+            if (displayAccurateArrivalTime)
+                return typeof(DelayHolder);
+
+            return typeof(RangedDelayHolder);
         }
     }
 }
