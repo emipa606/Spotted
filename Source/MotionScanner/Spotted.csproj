@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alerts\Alert_Spotted.cs" />
+    <Compile Include="DefOf\ResearchProjectDefOf.cs" />
     <Compile Include="Mod\Main.cs" />
     <Compile Include="Mod\SpottedMod.cs" />
     <Compile Include="Mod\SpottedSettings.cs" />

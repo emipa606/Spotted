@@ -63,6 +63,11 @@ namespace Spotted
 
         public static bool TryScanForMotion(IncidentParms parms)
         {
+            if (!ResearchProjectDefOf.BasicScoutingTehniques.IsFinished)
+            {
+                return false;
+            }
+
             SpottersCounter spottersCounter = new SpottersCounter((Map)parms.target);
             if (CalculateSpottingPower((Map)parms.target, spottersCounter) < new IntRange(0,100).RandomInRange)
             {
