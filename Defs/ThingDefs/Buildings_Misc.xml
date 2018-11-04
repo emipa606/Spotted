@@ -21,26 +21,29 @@
     </placeWorkers>
     <altitudeLayer>Building</altitudeLayer>
     <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
+      <MaxHitPoints>300</MaxHitPoints>
       <WorkToBuild>2000</WorkToBuild>
       <Flammability>1.0</Flammability>
-	  <Beauty>-12</Beauty>
-	  <SpottingPower>10.0</SpottingPower>
-	  <SpottingRange>0.5</SpottingRange>
+	    <Beauty>-12</Beauty>
+	    <SpottingPower>10.0</SpottingPower>
+	    <SpottingRange>0.5</SpottingRange>
     </statBases>
-	<building>
-    <allowAutoroof>false</allowAutoroof>
-	</building>
+	  <building>
+      <allowAutoroof>false</allowAutoroof>
+	  </building>
     <blockWind>true</blockWind>
-	<fillPercent>0.5</fillPercent>
+	  <fillPercent>0.5</fillPercent>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
-	<passability>PassThroughOnly</passability>
+	  <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
     <designationCategory>Security</designationCategory>
     <rotatable>false</rotatable>
     <canOverlapZones>false</canOverlapZones>
     <size>(4, 4)</size>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+   <researchPrerequisites>
+      <li>TowerBuilding</li>
+    </researchPrerequisites>
   </ThingDef>
 
 	<ThingDef ParentName="BuildingBase">
@@ -58,8 +61,8 @@
       </shadowData>
     </graphicData>
     <costList>
-      <Steel>400</Steel>
-      <ComponentIndustrial>10</ComponentIndustrial>
+      <Steel>300</Steel>
+      <ComponentIndustrial>8</ComponentIndustrial>
     </costList>
     <comps>
       <li Class="CompProperties_Power">
@@ -94,7 +97,7 @@
     <size>(3, 3)</size>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <researchPrerequisites>
-      <li>LongRangeMineralScanner</li>
+      <li>MotionScanner</li>
     </researchPrerequisites>
     <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
   </ThingDef>
@@ -102,7 +105,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>SatelliteController</defName>
     <label>satellite controller</label>
-	<thingClass>Building</thingClass>
+	  <thingClass>Building</thingClass>
     <description>A powerful computer capable to connect to abandoned satellites orbiting the planet taking control, with an AI capable of analyzing data from satellites and warns you when something is threatening your colony.</description>
     <graphicData>
       <texPath>Things/Buildings/SatelliteController</texPath>
@@ -113,10 +116,11 @@
 	  </shadowData>
     </graphicData>
     <costList>
-      <Steel>200</Steel>
-	  <Plasteel>50</Plasteel>
+      <Steel>100</Steel>
+	    <Plasteel>50</Plasteel>
       <ComponentIndustrial>4</ComponentIndustrial>
-	  <ComponentSpacer>4</ComponentSpacer>
+	    <ComponentSpacer>1</ComponentSpacer>
+      <AIPersonaCore>1</AIPersonaCore>
     </costList>
     <comps>
       <li Class="CompProperties_Power">
@@ -131,23 +135,23 @@
     <pathCost>70</pathCost>
     <blockWind>true</blockWind>
     <castEdgeShadows>false</castEdgeShadows>
-	<rotatable>true</rotatable>
-	<defaultPlacingRot>South</defaultPlacingRot>
-	<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+	  <rotatable>true</rotatable>
+	  <defaultPlacingRot>South</defaultPlacingRot>
+	  <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
       <WorkToBuild>8000</WorkToBuild>
       <Flammability>0.3</Flammability>
-	  <Beauty>-4</Beauty>
-	  <SpottingPower>100.0</SpottingPower>
-	  <SpottingRange>8.0</SpottingRange>
+	    <Beauty>-4</Beauty>
+	    <SpottingPower>100.0</SpottingPower>
+	    <SpottingRange>8.0</SpottingRange>
     </statBases>
     <fillPercent>0.40</fillPercent>
     <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
     <designationCategory>Security</designationCategory>
     <canOverlapZones>false</canOverlapZones>
-	<researchPrerequisites>
-      <li>MultiAnalyzer</li>
+	  <researchPrerequisites>
+      <li>AdvancedScoutingTehniques</li>
     </researchPrerequisites>
     <size>(3, 2)</size>
     <constructionSkillPrerequisite>12</constructionSkillPrerequisite>
