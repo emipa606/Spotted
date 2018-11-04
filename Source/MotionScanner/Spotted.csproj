@@ -7,8 +7,8 @@
     <ProjectGuid>{E8D77AAE-00A0-4AA6-B9B4-8EB52B1967C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MotionScanner</RootNamespace>
-    <AssemblyName>MotionScanner</AssemblyName>
+    <RootNamespace>Spotted</RootNamespace>
+    <AssemblyName>Spotted</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,16 +50,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerts\Alert_Spotted.cs" />
     <Compile Include="Mod\Main.cs" />
-    <Compile Include="Mod\MotionScannerMod.cs" />
-    <Compile Include="Mod\MotionScannerSettings.cs" />
+    <Compile Include="Mod\SpottedMod.cs" />
+    <Compile Include="Mod\SpottedSettings.cs" />
     <Compile Include="DefOf\StatDefOf.cs" />
     <Compile Include="Patches\TryResolveRaidSpawnCenter_Patches.cs" />
-    <Compile Include="Buildings\Building_MotionScanner.cs" />
-    <Compile Include="Utilities\MotionScannerUtility.cs" />
+    <Compile Include="Utilities\SpotterUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DefOf\ThingDefOf.cs" />
     <Compile Include="Utilities\SpottersCounter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Buildings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

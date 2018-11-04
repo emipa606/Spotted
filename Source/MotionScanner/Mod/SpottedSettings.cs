@@ -3,7 +3,7 @@ using Verse;
 
 namespace Spotted
 {
-    class MotionScannerSettings : ModSettings
+    class SpottedSettings : ModSettings
     {
         public static IntRange allowedTimeRange = new IntRange(3, 10);
         public static float edgeWalkInModifier = 1f;
@@ -12,6 +12,7 @@ namespace Spotted
         public static float edgeDropGroupsModifier = 1f;
         public static float centerDropModifier = 1f;
         public static float randomDropModifier = 1f;
+        public static bool displayAccurateArrivalTime = false;
 
         public override void ExposeData()
         {
@@ -24,6 +25,7 @@ namespace Spotted
             Scribe_Values.Look(ref edgeDropGroupsModifier, "edgeDropGroupsModifier", 1f, true);
             Scribe_Values.Look(ref centerDropModifier, "centerDropModifier", 1f, true);
             Scribe_Values.Look(ref randomDropModifier, "randomDropModifier", 1f, true);
+            Scribe_Values.Look(ref displayAccurateArrivalTime, "displayAccurateArivalTime", false, true);
         }
     
         public static Dictionary<string, float> GetModifiersDictionary()

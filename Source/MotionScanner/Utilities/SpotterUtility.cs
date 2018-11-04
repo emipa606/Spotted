@@ -8,7 +8,7 @@ namespace Spotted
 {
     static class SpotterUtility
     {
-        private static readonly string LetterLabel = "MS.MotionDetected";
+        private static readonly string LetterLabel = "S.MotionDetected";
         private static readonly float ColonistSpottingPower = 1f;
 
         private static float GetThreatScale()
@@ -30,12 +30,12 @@ namespace Spotted
 
         private static int CalculateDelay(IncidentParms parms, SpottersCounter spottersCounter)
         {
-            float modifier = MotionScannerSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
+            float modifier = SpottedSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
             float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingRange);
             float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingRange);
             float satellitePower = spottersCounter.PoweredSatelliteController() * ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingRange);
 
-            float delay = ((MotionScannerSettings.allowedTimeRange.RandomInRange + watchtowerPower + scannerPower + satellitePower) * modifier) * GenDate.TicksPerHour;
+            float delay = ((SpottedSettings.allowedTimeRange.RandomInRange + watchtowerPower + scannerPower + satellitePower) * modifier) * GenDate.TicksPerHour;
             int globalDelay = Find.TickManager.TicksGame + (int)delay;
 
             return globalDelay;
@@ -43,10 +43,10 @@ namespace Spotted
 
         private static string GetLetterText(int delay, Map map, SpottersCounter spottersCounter)
         {
-            string description = (spottersCounter.PoweredMotionScannersCount() > 0 || spottersCounter.PoweredSatelliteController() > 0) ? "MS.LetterDescScanner".Translate() : "MS.LetterDescColonist".Translate();
+            string description = (spottersCounter.PoweredMotionScannersCount() > 0 || spottersCounter.PoweredSatelliteController() > 0) ? "S.LetterDescScanner".Translate() : "S.LetterDescColonist".Translate();
             StringBuilder letterText = new StringBuilder();
             letterText.AppendLine(description);
-            letterText.Append("MS.LetterTime".Translate());
+            letterText.Append("S.LetterTime".Translate());
             letterText.Append(" " + ((delay - Find.TickManager.TicksGame) / GenDate.TicksPerHour).ToString() + "h");
 
             return letterText.ToString();
@@ -59,6 +59,7 @@ namespace Spotted
 
             QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, parms), delay);
             Find.Storyteller.incidentQueue.Add(qi);
+            Alert_Spotted.AddIncident(qi.FireTick);
         }
 
         public static bool TryScanForMotion(IncidentParms parms)
