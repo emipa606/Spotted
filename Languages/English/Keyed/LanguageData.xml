@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-  <S.MotionDetected>Motion Detected</S.MotionDetected>
-  <S.LetterDescScanner>Scanners have detected critical movement around your colony. It seems hostile targets are coming towards your base.</S.LetterDescScanner>
-  <S.LetterDescColonist>The colonists have detected hostile targets coming towards your base.</S.LetterDescColonist>
-  <S.LetterTime>Data suggest they will arrive in about</S.LetterTime>
+  <S.MotionDetected>Unusual movement</S.MotionDetected>
+  <S.LetterTime>They will arrive in about</S.LetterTime>
+
+  <!-- Detected messages -->
+  <S.DetectedTech>Motion detection technologies have detected unusual movement, coming towards your base.</S.DetectedTech>
+  <S.DetectedColonists>Colonists have detected unusual movement, coming towards your base.</S.DetectedColonists>
   
 </LanguageData>

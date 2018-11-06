@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByColonists</defName>
+        <label>spotted by colonists</label>
+        <storyKey>S.DetectedColonists</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>BasicScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>notbuilt</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>notbuilt</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByTech</defName>
+        <label>spotted by technology</label>
+        <storyKey>S.DetectedTech</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <optional>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>built</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>built</condition>
+            </li>
+        </optional>
+    </Spotted.StoryDef>
+
+</Defs>

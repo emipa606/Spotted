@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Alerts\Alert_Spotted.cs" />
     <Compile Include="DefOf\ResearchProjectDefOf.cs" />
+    <Compile Include="DefOf\StoryDefOf.cs" />
+    <Compile Include="Def\StoryDef.cs" />
     <Compile Include="Mod\Main.cs" />
     <Compile Include="Mod\SpottedMod.cs" />
     <Compile Include="Mod\SpottedSettings.cs" />
@@ -64,9 +66,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DefOf\ThingDefOf.cs" />
     <Compile Include="Utilities\SpottersCounter.cs" />
+    <Compile Include="Utilities\StoryUtility.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Buildings\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
