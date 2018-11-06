@@ -10,7 +10,7 @@ namespace Spotted
 
         static ResearchProjectDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(StatDefOf));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ResearchProjectDefOf));
         }
     }
 }

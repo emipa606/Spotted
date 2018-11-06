@@ -39,5 +39,9 @@ namespace Spotted
 
             incidentTicks.Add(incidentTick);
         }
+
+        ~Alert_Spotted(){
+            incidentTicks.Clear();
+        }
     }
 }
