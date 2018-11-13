@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Alerts\Alert_Spotted.cs" />
+    <Compile Include="Utilities\ConditionEvaluator.cs" />
     <Compile Include="DefOf\ResearchProjectDefOf.cs" />
     <Compile Include="DefOf\StoryDefOf.cs" />
     <Compile Include="Def\StoryDef.cs" />

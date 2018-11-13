@@ -15,12 +15,12 @@
             <li>
                 <defType>ThingDef</defType>
                 <defName>MotionScanner</defName>
-                <condition>notbuilt</condition>
+                <condition>notpowered</condition>
             </li>
             <li>
                 <defType>ThingDef</defType>
                 <defName>SatelliteController</defName>
-                <condition>notbuilt</condition>
+                <condition>notpowered</condition>
             </li>
         </required>
     </Spotted.StoryDef>
@@ -34,12 +34,12 @@
             <li>
                 <defType>ThingDef</defType>
                 <defName>MotionScanner</defName>
-                <condition>built</condition>
+                <condition>powered</condition>
             </li>
             <li>
                 <defType>ThingDef</defType>
                 <defName>SatelliteController</defName>
-                <condition>built</condition>
+                <condition>powered</condition>
             </li>
         </optional>
     </Spotted.StoryDef>

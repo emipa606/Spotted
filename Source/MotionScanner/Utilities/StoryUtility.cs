@@ -1,15 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Verse;
 
 namespace Spotted
 {
     static class StoryUtility
     {
-        public static bool MeetsRequirements(StoryDef story)
+        private static T ClearAndReturn<T>(T value, object[] args)
+        {
+            if(args != null)
+            {
+                ConditionEvaluator.ClearArgs();
+            }
+
+            return value;
+        }
+
+        public static bool MeetsRequirements(StoryDef story, object[] args = null)
         {
             if (story == null)
             {
                 return false;
+            }
+            if(args != null)
+            {
+                ConditionEvaluator.SetArgs(args);
             }
 
             if (story.required != null)
@@ -17,13 +32,13 @@ namespace Spotted
                 {
                     if (!requirement.RequirementIsMeet())
                     {
-                        return false;
+                        return ClearAndReturn(false, args);
                     }
                 }
 
             if (story.required?.Count > 0)
             {
-                return true;
+                return ClearAndReturn(true, args);
             }
 
             if (story.optional != null)
@@ -31,16 +46,21 @@ namespace Spotted
                 {
                     if (option.RequirementIsMeet())
                     {
-                        return true;
+                        return ClearAndReturn(true, args);
                     }
                 }
-
-            return false;
+            
+            return ClearAndReturn(false, args);
         }
 
-        public static IEnumerable<StoryDef> MeetRequirements(this IEnumerable<StoryDef> stories)
+        public static IEnumerable<StoryDef> MeetRequirements(this IEnumerable<StoryDef> stories, object[] args = null)
         {
-            return stories.Where(story => MeetsRequirements(story));
+            if(args != null)
+            {
+                ConditionEvaluator.SetArgs(args);
+            }
+            
+            return ClearAndReturn(stories.Where(story => MeetsRequirements(story)).ToList(), args);
         }
     }
 }

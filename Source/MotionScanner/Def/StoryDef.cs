@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Verse;
 
 namespace Spotted
 {
-    public enum Condition { built, notbuilt, researched, notresearched}
-
     public class StoryCondition
     {
-        private static object[] args = new object[] { };
-
         public Type defType;
         public string defName;
         public Condition condition;
@@ -21,70 +16,30 @@ namespace Spotted
 
             if(condition == Condition.built)
             {
-                if (args?.Count() == 0)
-                {
-                    return false;
-                }
-
-                Map map = (Map)args[0];
-                if(map == null)
-                {
-                    return false;
-                }
-
-                ThingDef buildingDef = (ThingDef)def;
-                if (buildingDef == null)
-                    return false;
-
-                return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0 ? true : false;
+                return ConditionEvaluator.EvaluateBuilt(def);
             }
             if(condition == Condition.notbuilt)
             {
-                if(args?.Count() == 0)
-                {
-                    return false;
-                }
-
-                Map map = (Map)args[0];
-                if (map == null)
-                {
-                    return false;
-                }
-
-                ThingDef buildingDef = (ThingDef)def;
-                if (buildingDef == null)
-                    return false;
-
-                return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0 ? false : true;
+                return !ConditionEvaluator.EvaluateBuilt(def);
             }
             if(condition == Condition.researched)
             {
-                ResearchProjectDef researchDef = (ResearchProjectDef)def;
-                return researchDef == null ? false : researchDef.IsFinished;
+                return ConditionEvaluator.EvaluateResearched(def);
             }
             if(condition == Condition.notresearched)
             {
-                ResearchProjectDef researchDef = (ResearchProjectDef)def;
-                return researchDef == null ? false : !researchDef.IsFinished;
+                return !ConditionEvaluator.EvaluateResearched(def);
+            }
+            if(condition == Condition.powered)
+            {
+                return ConditionEvaluator.EvaluatePowered(def);
+            }
+            if(condition == Condition.notpowered)
+            {
+                return !ConditionEvaluator.EvaluatePowered(def);
             }
 
             return false;
-        }
-
-        public static void SetArgs(object[] _args)
-        {
-            if(_args == null)
-            {
-                ClearArgs();
-                return;
-            }
-
-            args = _args;
-        }
-
-        public static void ClearArgs()
-        {
-            args = new object[] { };
         }
     }
 

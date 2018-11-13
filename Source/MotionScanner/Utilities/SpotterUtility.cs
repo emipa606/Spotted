@@ -42,20 +42,21 @@ namespace Spotted
             return (IDelayHolder)Activator.CreateInstance(SpottedSettings.GetDelayType(), args: (int)delay);
         }
 
-        private static string GetDescription()
+        private static string GetDescription(IncidentParms parms)
         {
-            List<StoryDef> descriptionStoryDefs = DefDatabase<StoryDef>.AllDefs.Where(def => def.storyType == "Spotted.Detected").MeetRequirements().ToList();
+            List<StoryDef> descriptionStoryDefs = DefDatabase<StoryDef>.AllDefs.Where(def => def.storyType == "Spotted.Detected")
+                                                                               .MeetRequirements(new object[] { parms.target })
+                                                                               .ToList();
             string descKey = descriptionStoryDefs.RandomElement()?.storyKey;
-
             return descKey == null ? string.Empty : descKey.Translate();
         }
 
-        private static string GetLetterText(IDelayHolder delay)
+        private static string GetLetterText(IDelayHolder delay, IncidentParms parms)
         {
             StringBuilder letterText = new StringBuilder();
 
             // description (detected text)
-            letterText.AppendLine(GetDescription());
+            letterText.AppendLine(GetDescription(parms));
 
             // count
             letterText.AppendLine("Number of aproaching entities is unknown.");
@@ -81,7 +82,7 @@ namespace Spotted
 
         private static void NotifySpotted(IncidentParms parms, IDelayHolder delay)
         {
-            Find.LetterStack.ReceiveLetter(LetterLabel.Translate(), GetLetterText(delay), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target));
+            Find.LetterStack.ReceiveLetter(LetterLabel.Translate(), GetLetterText(delay, parms), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target));
             Alert_Spotted.AddIncident(delay);
         }
 
@@ -104,9 +105,7 @@ namespace Spotted
             IDelayHolder delay = DelayRaid(parms, spottersCounter);
 
             // Send Letter and Alert
-            StoryCondition.SetArgs(new object[] { parms.target });
             NotifySpotted(parms, delay);
-            StoryCondition.ClearArgs();
 
             return true;
         }
