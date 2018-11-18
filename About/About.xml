@@ -5,18 +5,14 @@
 	<url></url>
 	<targetVersion>1.0.0</targetVersion>
 	<description>
-Have you ever wondered how do raiders manage to reach your colony unnoticed?
+Have you ever wondered how do raiders/caravans/animals manage to reach your colony unnoticed?
 Well this mod fixes that by adding a chance for your colonists to spot them valuable time before they reach your colony.
-But sometimes the raiders are more sneaky, to counter this new buildings have been added to the game which increase the chance to spot any raid.
-So draft your colonists and wait for their arrival.
+But sometimes they are more sneaky, to counter this new buildings have been added to the game which increase the chance to spot any movement outside your colonies.
+Make sure your colonist know everything which moves around, don't get caught unprepared.
 	
 More details:
- * Watchtower requires not tech, good for tribal start
-	- The first accesible spotting building, not very effective and the distance it covers is limited but requires no power to run.
- * Motion Scanner requires tech "Long-range mineral scanner"
-	- An improvement over Watchtower as it can spot more raids and from longer distances
- * Satellite Controlle requires tech "Multi-Analyser"
-	- The ultimate spotting computer, able to spot most of the raids from very long distances
+ * Buildings are unlocked by researching the Spotted Research Tree
+ * With every research every movement spotted has more details.
  * Every colonist increases discovery chance with 0.5%
  * Spotting capabilities of buildings can be seen on their stats
  * Discovery power and range is cumulative so building more structures will increase your chance.
