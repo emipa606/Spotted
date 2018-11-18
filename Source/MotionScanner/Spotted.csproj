@@ -50,12 +50,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alerts\Alert_Spotted.cs" />
+    <Compile Include="DefOf\ConfigDefOf.cs" />
+    <Compile Include="Def\ConfigDef.cs" />
+    <Compile Include="Notifications\AlertIncident.cs" />
+    <Compile Include="Notifications\Alert_Spotted.cs" />
+    <Compile Include="Notifications\SpottedLetter.cs" />
+    <Compile Include="Patches\IncidentWorker_TryExecuteWorker_Patch.cs" />
     <Compile Include="Utilities\ConditionEvaluator.cs" />
     <Compile Include="DefOf\ResearchProjectDefOf.cs" />
     <Compile Include="DefOf\StoryDefOf.cs" />
     <Compile Include="Def\StoryDef.cs" />
-    <Compile Include="Mod\Main.cs" />
+    <Compile Include="Mod\Patcher.cs" />
     <Compile Include="Mod\SpottedMod.cs" />
     <Compile Include="Mod\SpottedSettings.cs" />
     <Compile Include="DefOf\StatDefOf.cs" />
@@ -69,6 +74,5 @@
     <Compile Include="Utilities\SpottersCounter.cs" />
     <Compile Include="Utilities\StoryUtility.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
