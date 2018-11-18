@@ -1,16 +1,12 @@
 ﻿using RimWorld;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace Spotted
 {
     static class SpotterUtility
     {
-        private static readonly string LetterLabel = "S.MotionDetected";
         private static readonly float ColonistSpottingPower = 1f;
 
         private static float GetThreatScale()
@@ -18,8 +14,14 @@ namespace Spotted
             return Find.Storyteller.difficulty.threatScale;
         }
 
-        private static float CalculateSpottingPower(Map map, SpottersCounter spottersCounter)
+        private static float CalculateSpottingPower(Map map)
         {
+            if(map == null)
+            {
+                return 0;
+            }
+            SpottersCounter spottersCounter = new SpottersCounter(map);
+
             float colonistPower = spottersCounter.ActiveColonistsCount() * ColonistSpottingPower;
             float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingPower);
             float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingPower);
@@ -30,9 +32,24 @@ namespace Spotted
             return discoveryPower;
         }
 
-        private static IDelayHolder CalculateDelay(IncidentParms parms, SpottersCounter spottersCounter)
+        private static IDelayHolder CalculateDelay(IncidentParms parms)
         {
-            float modifier = SpottedSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
+            if(parms.target == null)
+            {
+                return (IDelayHolder)Activator.CreateInstance(SpottedSettings.GetDelayType(), args: 0);
+            }
+            SpottersCounter spottersCounter = new SpottersCounter((Map)parms.target);
+
+            float modifier = .0f;
+            try
+            {
+                modifier = SpottedSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
+            }
+            catch
+            {
+                modifier = 1f;
+            }
+
             float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingRange);
             float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingRange);
             float satellitePower = spottersCounter.PoweredSatelliteController() * ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingRange);
@@ -42,51 +59,43 @@ namespace Spotted
             return (IDelayHolder)Activator.CreateInstance(SpottedSettings.GetDelayType(), args: (int)delay);
         }
 
-        private static string GetDescription(IncidentParms parms)
+        private static IDelayHolder DelayRaid(IncidentParms parms, IncidentDef incidentDef)
         {
-            List<StoryDef> descriptionStoryDefs = DefDatabase<StoryDef>.AllDefs.Where(def => def.storyType == "Spotted.Detected")
-                                                                               .MeetRequirements(new object[] { parms.target })
-                                                                               .ToList();
-            string descKey = descriptionStoryDefs.RandomElement()?.storyKey;
-            return descKey == null ? string.Empty : descKey.Translate();
-        }
-
-        private static string GetLetterText(IDelayHolder delay, IncidentParms parms)
-        {
-            StringBuilder letterText = new StringBuilder();
-
-            // description (detected text)
-            letterText.AppendLine(GetDescription(parms));
-
-            // count
-            letterText.AppendLine("Number of aproaching entities is unknown.");
-
-            // type
-            // Not Implemented
-
-            // arrival time
-            letterText.Append("S.LetterTime".Translate());
-            letterText.Append(" " + delay.ToStringRelativeDelayToPeriod());
-
-            return letterText.ToString();
-        }
-
-        private static IDelayHolder DelayRaid(IncidentParms parms, SpottersCounter spottersCounter)
-        {
-            IDelayHolder delay = CalculateDelay(parms, spottersCounter);
-            QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.RaidEnemy, null, parms), delay.GetGlobalDelay());
+            IDelayHolder delay = CalculateDelay(parms);
+            QueuedIncident qi = new QueuedIncident(new FiringIncident(incidentDef, null, parms), delay.GetGlobalDelay());
             Find.Storyteller.incidentQueue.Add(qi);
 
             return delay;
         }
 
-        private static void NotifySpotted(IncidentParms parms, IDelayHolder delay)
+        private static IncidentDef TryIdentifyType(IncidentParms parms, IncidentDef incidentDef, float spottingPower)
         {
-            Find.LetterStack.ReceiveLetter(LetterLabel.Translate(), GetLetterText(delay, parms), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target));
-            Alert_Spotted.AddIncident(delay);
+            if (!ResearchProjectDefOf.MotionScanner.IsFinished)
+            {
+                return null;
+            }
+
+            float multiplier = .1f;
+            if(ResearchProjectDefOf.AdvancedScoutingTehniques.IsFinished && (parms.target as Map).listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.SatelliteController))
+            {
+                multiplier = 1f;
+            }
+
+            if(spottingPower * multiplier < new IntRange(0, 100).RandomInRange)
+            {
+                return null;
+            }
+
+            return incidentDef;
         }
 
-        public static bool TryScanForMotion(IncidentParms parms)
+        private static void NotifySpotted(IncidentParms parms, IDelayHolder delay, IncidentDef incidentDef = null)
+        {
+            Find.LetterStack.ReceiveLetter(SpottedLetter.NewLetter(parms, delay, incidentDef));
+            Alert_Spotted.AddIncident(new AlertIncident(delay, incidentDef));
+        }
+
+        public static bool TryScanForMotion(IncidentParms parms, IncidentDef incidentDef)
         {
             // Can spot?
             if (!ResearchProjectDefOf.BasicScoutingTehniques.IsFinished)
@@ -95,28 +104,31 @@ namespace Spotted
             }
 
             // Detected
-            SpottersCounter spottersCounter = new SpottersCounter((Map)parms.target);
-            if (CalculateSpottingPower((Map)parms.target, spottersCounter) < new IntRange(0,100).RandomInRange)
+            float spottingPower = CalculateSpottingPower((Map)parms.target);
+            if (spottingPower < new IntRange(0,100).RandomInRange)
             {
                 return false;
             }
             
             // Delay
-            IDelayHolder delay = DelayRaid(parms, spottersCounter);
+            IDelayHolder delay = DelayRaid(parms, incidentDef);
+
+            // Indentify type
+            IncidentDef spottedType = TryIdentifyType(parms, incidentDef, spottingPower);
 
             // Send Letter and Alert
-            NotifySpotted(parms, delay);
+            NotifySpotted(parms, delay, spottedType);
 
             return true;
         }
 
-        public static bool IncidentIsQueued(IncidentParms parms)
+        public static bool IncidentIsQueued(IncidentParms parms, IncidentDef incidentDef)
         {
             IEnumerator qIncidents = Find.Storyteller.incidentQueue.GetEnumerator();
             while (qIncidents.MoveNext())
             {
                 QueuedIncident qi = (QueuedIncident)qIncidents.Current;
-                if (qi.FiringIncident.parms == parms)
+                if (qi.FiringIncident.parms == parms && qi.FiringIncident.def == incidentDef)
                 {
                     return true;
                 }

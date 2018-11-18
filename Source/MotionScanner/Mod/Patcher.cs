@@ -11,23 +11,6 @@ namespace Spotted
     [StaticConstructorOnStartup]
     class Patcher
     {
-        private static List<String> incidentWorkers = new List<string>
-        {
-            "RimWorld.IncidentWorker_DeepDrillInfestation",
-            "RimWorld.IncidentWorker_FarmAnimalsWanderIn",
-            "RimWorld.IncidentWorker_HerdMigration",
-            "RimWorld.IncidentWorker_Infestation",
-            "RimWorld.IncidentWorker_ManhunterPack",
-            "RimWorld.IncidentWorker_RefugeeChased",
-            "RimWorld.IncidentWorker_ThrumboPasses",
-            "RimWorld.IncidentWorker_TraderCaravanArrival",
-            "RimWorld.IncidentWorker_TransportPodCrash",
-            "RimWorld.IncidentWorker_TravelerGroup",
-            "RimWorld.IncidentWorker_VisitorGroup",
-            "RimWorld.IncidentWorker_WandererJoin",
-            "RimWorld.IncidentWorker_WildManWandersIn"
-        };
-
         static Patcher()
         {
             var harmony = HarmonyInstance.Create("TGPAcher.Rimworld.Spotted");
@@ -40,9 +23,9 @@ namespace Spotted
                             where typeof(IncidentWorker).IsAssignableFrom(assemblyType)
                             select assemblyType).ToArray();
 
-            foreach(var incident in listOfIncidents)
+            foreach (var incident in listOfIncidents)
             {
-                if (incidentWorkers.Contains(incident.FullName))
+                if (ConfigDefOf.IncidentConfig.GetArgs().Contains(incident.FullName))
                 {
                     Type currentType = incident.GetType();
 

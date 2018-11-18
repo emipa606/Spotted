@@ -17,13 +17,16 @@ namespace Spotted
 
         public int ActiveColonistsCount()
         {
-            int colonistsCount = map.mapPawns.ColonistsSpawnedCount;
-
-            return colonistsCount;
+            return map == null ? 0 : map.mapPawns.ColonistsSpawnedCount;
         }
 
         public int WatchtowersCount()
         {
+            if(map == null)
+            {
+                return 0;
+            }
+
             return GetThingCount(map, ThingDefOf.Watchtower, delegate (Thing item)
             {
                 if (item.Faction == Find.FactionManager.OfPlayer)
@@ -35,6 +38,11 @@ namespace Spotted
 
         public int PoweredMotionScannersCount()
         {
+            if(map == null)
+            {
+                return 0;
+            }
+
             return GetThingCount(map, ThingDefOf.MotionScanner, delegate (Thing item)
             {
                 if(item.Faction == Find.FactionManager.OfPlayer)
@@ -52,6 +60,11 @@ namespace Spotted
 
         public int PoweredSatelliteController()
         {
+            if(map == null)
+            {
+                return 0;
+            }
+
             return GetThingCount(map, ThingDefOf.SatelliteController, delegate (Thing item)
             {
                 if (item.Faction == Find.FactionManager.OfPlayer)
