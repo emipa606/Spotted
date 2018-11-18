@@ -2,6 +2,7 @@
 <LanguageData>
 
     <S.SpottedAlertLabel>Motion spotted</S.SpottedAlertLabel>
-    <S.IncomingRaid>Raid incoming in</S.IncomingRaid>
+    <S.Incoming> incoming in </S.Incoming>
+    <S.UnidentifiedMovement>Unidentified movement</S.UnidentifiedMovement>
 
 </LanguageData>
