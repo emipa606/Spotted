@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Verse;
 
 namespace Spotted
 {
@@ -49,8 +48,13 @@ namespace Spotted
                         return ClearAndReturn(true, args);
                     }
                 }
+
+            if(story.optional?.Count > 0)
+            {
+                return ClearAndReturn(false, args);
+            }
             
-            return ClearAndReturn(false, args);
+            return ClearAndReturn(true, args);
         }
 
         public static IEnumerable<StoryDef> MeetRequirements(this IEnumerable<StoryDef> stories, object[] args = null)

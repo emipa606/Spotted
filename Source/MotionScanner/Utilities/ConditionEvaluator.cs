@@ -3,7 +3,7 @@ using Verse;
 
 namespace Spotted
 {
-    public enum Condition { built, notbuilt, researched, notresearched, powered, notpowered }
+    public enum Condition { built, notbuilt, researched, notresearched, powered, notpowered}
 
     public static class ConditionEvaluator
     {
@@ -31,7 +31,7 @@ namespace Spotted
             {
                 return false;
             }
-
+            
             Map map = (Map)args[0];
             if (map == null)
             {
