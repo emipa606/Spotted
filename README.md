@@ -1,1 +1,1 @@
-# MotionScanner [1.0]
+# Spotted [1.0]
