@@ -1,12 +1,11 @@
 ﻿using Harmony;
 using RimWorld;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Verse;
 
-namespace Spotted
+namespace Spotted.Harmony
 {
     [StaticConstructorOnStartup]
     class Patcher
@@ -15,7 +14,6 @@ namespace Spotted
         {
             var harmony = HarmonyInstance.Create("TGPAcher.Rimworld.Spotted");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-
 
             // Patch incidents which do not have special "patch"
             var listOfIncidents = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
@@ -27,13 +25,10 @@ namespace Spotted
             {
                 if (ConfigDefOf.IncidentConfig.GetArgs().Contains(incident.FullName))
                 {
-                    Type currentType = incident.GetType();
-
                     harmony.Patch(AccessTools.Method(AccessTools.TypeByName(incident.FullName), "TryExecuteWorker"),
                         new HarmonyMethod(
-                            typeof(IncidentWorker_TryExecuteWorker_Patch)
-                            .GetMethod(nameof(IncidentWorker_TryExecuteWorker_Patch.TryExecuteWorker_Patch))
-                            .MakeGenericMethod(incident.GetType())));
+                            typeof(IncidentWorker_TryExecuteWorker)
+                            .GetMethod(nameof(IncidentWorker_TryExecuteWorker.Prefix))));
                 }
             }
         }
