@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\HugsLib\Assemblies\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -55,16 +56,16 @@
     <Compile Include="Notifications\AlertIncident.cs" />
     <Compile Include="Notifications\Alert_Spotted.cs" />
     <Compile Include="Notifications\SpottedLetter.cs" />
-    <Compile Include="Patches\IncidentWorker_TryExecuteWorker_Patch.cs" />
+    <Compile Include="Harmony\IncidentWorker_TryExecuteWorker_Patch.cs" />
     <Compile Include="Utilities\ConditionEvaluator.cs" />
     <Compile Include="DefOf\ResearchProjectDefOf.cs" />
     <Compile Include="DefOf\StoryDefOf.cs" />
     <Compile Include="Def\StoryDef.cs" />
-    <Compile Include="Mod\Patcher.cs" />
+    <Compile Include="Harmony\Patcher.cs" />
     <Compile Include="Mod\SpottedMod.cs" />
     <Compile Include="Mod\SpottedSettings.cs" />
     <Compile Include="DefOf\StatDefOf.cs" />
-    <Compile Include="Patches\TryResolveRaidSpawnCenter_Patches.cs" />
+    <Compile Include="Harmony\TryResolveRaidSpawnCenter_Patches.cs" />
     <Compile Include="Utilities\DelayHolder.cs" />
     <Compile Include="Utilities\RangedDelayHolder.cs" />
     <Compile Include="Utilities\IDelayHolder.cs" />
