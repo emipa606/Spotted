@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest>
     <identifier>Spotted</identifier>
-    <version>2.1.0.0</version>
+    <version>2.1.1.0</version>
     <manifestUri>https://cdn.jsdelivr.net/gh/TGPArcher/Spotted/About/Manifest.xml</manifestUri>
     <downloadUri>https://github.com/TGPArcher/Spotted/releases/latest</downloadUri>
 </Manifest>
