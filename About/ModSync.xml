@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModSyncNinjaData>
-  <ID>8770697d-0298-4038-ba08-0c01b10cc781</ID>
+  <ID>49b59f9c-6870-41d4-87d6-2569ffe708b8</ID>
   <ModName>Spotted (Continued)</ModName>
-  <Version>2.1.1.0</Version>
+  <Version>1.0.1.0</Version>
   <SaveBreaking>False</SaveBreaking>
   <Host name="Github">
     <Owner>emipa606</Owner>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest>
-    <identifier>Spotted</identifier>
-    <version>2.1.1.0</version>
-    <manifestUri>https://cdn.jsdelivr.net/gh/TGPArcher/Spotted/About/Manifest.xml</manifestUri>
-    <downloadUri>https://github.com/TGPArcher/Spotted/releases/latest</downloadUri>
+  <identifier>Spotted</identifier>
+  <version>1.0.1.0</version>
+  <dependencies />
+  <incompatibleWith />
+  <loadBefore />
+  <loadAfter />
+  <manifestUri>https://raw.githubusercontent.com/emipa606/Spotted/master/About/Manifest.xml</manifestUri>
+  <downloadUri>https://github.com/emipa606/Spotted/releases</downloadUri>
 </Manifest>
+
+
