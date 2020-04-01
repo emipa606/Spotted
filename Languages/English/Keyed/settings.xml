@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <S.SettingsLabel>Spotted</S.SettingsLabel>
+
+  <S.DelayRange>Base raid arrival</S.DelayRange>
+  <S.DelayRangeTooltip>Base raid arrival time after it has been discovered</S.DelayRangeTooltip>
+  <S.EdgeWalkIn>Walking in from the edge</S.EdgeWalkIn>
+  <S.EdgeDrop>Drop podding at the edge</S.EdgeDrop>
+  <S.EdgeWalkInGroups>Walking in form the edge(in groups)</S.EdgeWalkInGroups>
+  <S.EdgeDropGroups>Drop podding at the edge(in groups)</S.EdgeDropGroups>
+  <S.CenterDrop>Drop podding in the center</S.CenterDrop>
+  <S.RandomDrop>Drop podding randomly</S.RandomDrop>
+  <S.multiplier>Below 1 will reduce the delay for specific arrival method, above will increase it</S.multiplier>
+
+  <S.AccurateArrival>Display exact arrival time</S.AccurateArrival>
+  <S.AccurateTooltip>Disabled - when movement is spotted an interval of time for their arrival will be displayed
+  Enabled - when movement is spotted the exact arrival time is displayed</S.AccurateTooltip>
+  
+</LanguageData>

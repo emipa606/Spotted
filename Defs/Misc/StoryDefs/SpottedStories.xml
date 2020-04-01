@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <!-- General letter description-->
+    <Spotted.StoryDef>
+        <defName>SpottedByColonists</defName>
+        <label>spotted by colonists</label>
+        <storyKey>S.DetectedColonists</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>BasicScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>notpowered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>notpowered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByWanderer</defName>
+        <label>spotted by wanderer</label>
+        <storyKey>S.DetectedWanderer</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>BasicScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>notpowered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>notpowered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByVision</defName>
+        <label>spotted by vision</label>
+        <storyKey>S.DetectedVision</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>BasicScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>notpowered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>notpowered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByWatchtower</defName>
+        <label>spotted by watchtower</label>
+        <storyKey>S.DetectedWatchtower</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>BasicScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>Watchtower</defName>
+                <condition>built</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>notpowered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>notpowered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByWater</defName>
+        <label>spotted by water</label>
+        <storyKey>S.DetectedWater</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>BasicScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>notpowered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>notpowered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByTech</defName>
+        <label>spotted by technology</label>
+        <storyKey>S.DetectedTech</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <optional>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>powered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>powered</condition>
+            </li>
+        </optional>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedBySatellite</defName>
+        <label>spotted by satellite</label>
+        <storyKey>S.DetectedSatellite</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>AdvancedScoutingTehniques</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>powered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByScanner</defName>
+        <label>spotted by scanner</label>
+        <storyKey>S.DetectedScanner</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <required>
+            <li>
+                <defType>ResearchProjectDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>researched</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>powered</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByMachineLearning</defName>
+        <label>spotted by machine learning</label>
+        <storyKey>S.DetectedMachineLearning</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <optional>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>powered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>powered</condition>
+            </li>
+        </optional>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>SpottedByTechConsistent</defName>
+        <label>spotted by consistent technology </label>
+        <storyKey>S.DetectedTechConsistent</storyKey>
+        <storyType>Spotted.Detected</storyType>
+        <optional>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>MotionScanner</defName>
+                <condition>powered</condition>
+            </li>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>SatelliteController</defName>
+                <condition>powered</condition>
+            </li>
+        </optional>
+    </Spotted.StoryDef>
+
+    <!-- Letter type description-->
+    <Spotted.StoryDef>
+        <defName>TypeIdentifiedBase_1</defName>
+        <label>type identified base_1</label>
+        <storyKey>S.BaseType_1</storyKey>
+        <storyType>Spotted.IdentifiedType</storyType>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>TypeIdentifiedBase_2</defName>
+        <label>type identified base_2</label>
+        <storyKey>S.BaseType_2</storyKey>
+        <storyType>Spotted.IdentifiedType</storyType>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>TypeIdentifiedTower</defName>
+        <label>type identified tower</label>
+        <storyKey>S.TypeTower</storyKey>
+        <storyType>Spotted.IdentifiedType</storyType>
+        <required>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>Watchtower</defName>
+                <condition>built</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>TypeIdentifiedSattellite</defName>
+        <label>type identified satellite</label>
+        <storyKey>S.TypeSattellite</storyKey>
+        <storyType>Spotted.IdentifiedType</storyType>
+        <required>
+            <li>
+                <defType>ThingDef</defType>
+                <defName>Watchtower</defName>
+                <condition>built</condition>
+            </li>
+        </required>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>TypeUnIdentified_1</defName>
+        <label>type unidentified</label>
+        <storyKey>S.TypeUnidentified_1</storyKey>
+        <storyType>Spotted.UnidentifiedType</storyType>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>TypeUnIdentified_2</defName>
+        <label>type unidentified</label>
+        <storyKey>S.TypeUnidentified_2</storyKey>
+        <storyType>Spotted.UnidentifiedType</storyType>
+    </Spotted.StoryDef>
+
+    <Spotted.StoryDef>
+        <defName>TypeUnIdentifiedQuarrel</defName>
+        <label>type unidentified</label>
+        <storyKey>S.TypeUnidentifiedQuarrel</storyKey>
+        <storyType>Spotted.UnidentifiedType</storyType>
+    </Spotted.StoryDef>
+
+</Defs>
