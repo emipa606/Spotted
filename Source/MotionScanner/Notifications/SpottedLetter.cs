@@ -12,7 +12,9 @@ namespace Spotted
 
         public static Letter NewLetter(IncidentParms parms, IDelayHolder delay, IncidentDef incidentDef = null)
         {
-            return LetterMaker.MakeLetter(LetterLabel.Translate(), GetLetterText(delay, parms, incidentDef), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target)); ;
+            if (incidentDef == null || parms.points > -1f)
+                return LetterMaker.MakeLetter(LetterLabel.Translate(), GetLetterText(delay, parms, incidentDef), LetterDefOf.ThreatBig, new TargetInfo(parms.spawnCenter, (Map)parms.target));
+            return LetterMaker.MakeLetter(LetterLabel.Translate(), GetLetterText(delay, parms, incidentDef), LetterDefOf.NeutralEvent, new TargetInfo(parms.spawnCenter, (Map)parms.target));
         }
 
         private static string GetLetterText(IDelayHolder delay, IncidentParms parms, IncidentDef incidentDef = null)

@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
-    <S.SpottedAlertLabel>Motion spotted</S.SpottedAlertLabel>
-    <S.Incoming> incoming in </S.Incoming>
-    <S.UnidentifiedMovement>Unidentified movement</S.UnidentifiedMovement>
+  <S.SpottedAlertLabel>Motion spotted</S.SpottedAlertLabel>
+  <S.Incoming> incoming in </S.Incoming>
+  <S.UnidentifiedMovement>Unidentified movement</S.UnidentifiedMovement>
 
 </LanguageData>

@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  
   <ResearchProjectDef>
     <defName>BasicScoutingTehniques</defName>
     <label>basic scouting tehniques</label>
@@ -15,7 +14,6 @@
     <researchViewY>0</researchViewY>
     <tab>Spotted</tab>
   </ResearchProjectDef>
-
   <ResearchProjectDef>
     <defName>TowerBuilding</defName>
     <label>tower building</label>
@@ -29,7 +27,6 @@
     </prerequisites>
     <tab>Spotted</tab>
   </ResearchProjectDef>
-
   <ResearchProjectDef>
     <defName>MotionScanner</defName>
     <label>motion scanner</label>
@@ -45,7 +42,6 @@
     <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
     <tab>Spotted</tab>
   </ResearchProjectDef>
-
   <ResearchProjectDef>
     <defName>AdvancedScoutingTehniques</defName>
     <label>advanced scouting tehniques</label>
@@ -64,5 +60,4 @@
     </requiredResearchFacilities>
     <tab>Spotted</tab>
   </ResearchProjectDef>
-
 </Defs>

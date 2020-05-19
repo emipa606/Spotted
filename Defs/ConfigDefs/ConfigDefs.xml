@@ -1,23 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
-    <Spotted.ConfigDef>
-        <defName>IncidentConfig</defName>
-        <args>
-            <li>RimWorld.IncidentWorker_DeepDrillInfestation</li>
-            <li>RimWorld.IncidentWorker_FarmAnimalsWanderIn</li>
-            <li>RimWorld.IncidentWorker_HerdMigration</li>
-            <li>RimWorld.IncidentWorker_Infestation</li>
-            <li>RimWorld.IncidentWorker_ManhunterPack</li>
-            <li>RimWorld.IncidentWorker_RefugeeChased</li>
-            <li>RimWorld.IncidentWorker_ThrumboPasses</li>
-            <li>RimWorld.IncidentWorker_TraderCaravanArrival</li>
-            <li>RimWorld.IncidentWorker_TransportPodCrash</li>
-            <li>RimWorld.IncidentWorker_TravelerGroup</li>
-            <li>RimWorld.IncidentWorker_VisitorGroup</li>
-            <li>RimWorld.IncidentWorker_WandererJoin</li>
-            <li>RimWorld.IncidentWorker_WildManWandersIn</li>
-        </args>
-    </Spotted.ConfigDef>
-
+  <Spotted.ConfigDef>
+    <defName>IncidentConfig</defName>
+    <args>
+      <li>RimWorld.IncidentWorker_DeepDrillInfestation</li>
+      <li>RimWorld.IncidentWorker_FarmAnimalsWanderIn</li>
+      <li>RimWorld.IncidentWorker_HerdMigration</li>
+      <li>RimWorld.IncidentWorker_Infestation</li>
+      <li>RimWorld.IncidentWorker_ManhunterPack</li>
+      <li>RimWorld.IncidentWorker_RefugeeChased</li>
+      <li>RimWorld.IncidentWorker_ThrumboPasses</li>
+      <li>RimWorld.IncidentWorker_TraderCaravanArrival</li>
+      <li>RimWorld.IncidentWorker_TransportPodCrash</li>
+      <li>RimWorld.IncidentWorker_TravelerGroup</li>
+      <li>RimWorld.IncidentWorker_VisitorGroup</li>
+      <li>RimWorld.IncidentWorker_WandererJoin</li>
+      <li>RimWorld.IncidentWorker_WildManWandersIn</li>
+    </args>
+  </Spotted.ConfigDef>
 </Defs>
