@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using Verse;
 
 namespace Spotted.Harmony
 {
@@ -6,6 +7,10 @@ namespace Spotted.Harmony
     {
         public static bool Prefix(IncidentWorker __instance, bool __result, ref IncidentParms parms)
         {
+            if (__instance.def.category == IncidentCategoryDefOf.AllyAssistance)
+            {
+                return true;
+            }
             if (!SpotterUtility.IncidentIsQueued(parms, __instance.def))
             {
                 if (parms == null)
