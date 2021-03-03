@@ -1,11 +1,10 @@
-﻿using RimWorld;
-using System;
-using System.Collections;
+﻿using System;
+using RimWorld;
 using Verse;
 
 namespace Spotted
 {
-    static class SpotterUtility
+    internal static class SpotterUtility
     {
         private static readonly float ColonistSpottingPower = 1f;
 
@@ -16,31 +15,37 @@ namespace Spotted
 
         private static float CalculateSpottingPower(Map map)
         {
-            if(map == null)
+            if (map == null)
             {
                 return 0;
             }
-            SpottersCounter spottersCounter = new SpottersCounter(map);
 
-            float colonistPower = spottersCounter.ActiveColonistsCount() * ColonistSpottingPower;
-            float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingPower);
-            float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingPower);
-            float satellitePower = spottersCounter.PoweredSatelliteController() * ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingPower);
+            var spottersCounter = new SpottersCounter(map);
 
-            float discoveryPower = (colonistPower + watchtowerPower + scannerPower + satellitePower) / (float)Math.Sqrt(GetThreatScale());
+            var colonistPower = spottersCounter.ActiveColonistsCount() * ColonistSpottingPower;
+            var watchtowerPower = spottersCounter.WatchtowersCount() *
+                                  ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingPower);
+            var scannerPower = spottersCounter.PoweredMotionScannersCount() *
+                               ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingPower);
+            var satellitePower = spottersCounter.PoweredSatelliteController() *
+                                 ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingPower);
+
+            var discoveryPower = (colonistPower + watchtowerPower + scannerPower + satellitePower) /
+                                 (float) Math.Sqrt(GetThreatScale());
 
             return discoveryPower;
         }
 
         private static IDelayHolder CalculateDelay(IncidentParms parms)
         {
-            if(parms.target == null)
+            if (parms.target == null)
             {
-                return (IDelayHolder)Activator.CreateInstance(SpottedSettings.GetDelayType(), args: 0);
+                return (IDelayHolder) Activator.CreateInstance(SpottedSettings.GetDelayType(), 0);
             }
-            SpottersCounter spottersCounter = new SpottersCounter((Map)parms.target);
 
-            float modifier = .0f;
+            var spottersCounter = new SpottersCounter((Map) parms.target);
+
+            var modifier = .0f;
             try
             {
                 modifier = SpottedSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
@@ -50,19 +55,23 @@ namespace Spotted
                 modifier = 1f;
             }
 
-            float watchtowerPower = spottersCounter.WatchtowersCount() * ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingRange);
-            float scannerPower = spottersCounter.PoweredMotionScannersCount() * ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingRange);
-            float satellitePower = spottersCounter.PoweredSatelliteController() * ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingRange);
+            var watchtowerPower = spottersCounter.WatchtowersCount() *
+                                  ThingDefOf.Watchtower.GetStatValueAbstract(StatDefOf.SpottingRange);
+            var scannerPower = spottersCounter.PoweredMotionScannersCount() *
+                               ThingDefOf.MotionScanner.GetStatValueAbstract(StatDefOf.SpottingRange);
+            var satellitePower = spottersCounter.PoweredSatelliteController() *
+                                 ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingRange);
 
-            float delay = ((SpottedSettings.allowedTimeRange.RandomInRange + watchtowerPower + scannerPower + satellitePower) * modifier) * GenDate.TicksPerHour;
+            var delay = (SpottedSettings.allowedTimeRange.RandomInRange + watchtowerPower + scannerPower +
+                         satellitePower) * modifier * GenDate.TicksPerHour;
 
-            return (IDelayHolder)Activator.CreateInstance(SpottedSettings.GetDelayType(), args: (int)delay);
+            return (IDelayHolder) Activator.CreateInstance(SpottedSettings.GetDelayType(), (int) delay);
         }
 
         private static IDelayHolder DelayRaid(IncidentParms parms, IncidentDef incidentDef)
         {
-            IDelayHolder delay = CalculateDelay(parms);
-            QueuedIncident qi = new QueuedIncident(new FiringIncident(incidentDef, null, parms), delay.GetGlobalDelay());
+            var delay = CalculateDelay(parms);
+            var qi = new QueuedIncident(new FiringIncident(incidentDef, null, parms), delay.GetGlobalDelay());
             Find.Storyteller.incidentQueue.Add(qi);
 
             return delay;
@@ -75,13 +84,14 @@ namespace Spotted
                 return null;
             }
 
-            float multiplier = .1f;
-            if(ResearchProjectDefOf.AdvancedScoutingTehniques.IsFinished && (parms.target as Map).listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.SatelliteController))
+            var multiplier = .1f;
+            if (ResearchProjectDefOf.AdvancedScoutingTehniques.IsFinished &&
+                (parms.target as Map).listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.SatelliteController))
             {
                 multiplier = 1f;
             }
 
-            if(spottingPower * multiplier < new IntRange(0, 100).RandomInRange)
+            if (spottingPower * multiplier < new IntRange(0, 100).RandomInRange)
             {
                 return null;
             }
@@ -103,18 +113,24 @@ namespace Spotted
                 return false;
             }
 
-            // Detected
-            float spottingPower = CalculateSpottingPower((Map)parms.target);
-            if (spottingPower < new IntRange(0,100).RandomInRange)
+            // Dont block quests
+            if (parms.quest != null || parms.questScriptDef != null || parms.questTag != null)
             {
                 return false;
             }
-            
+
+            // Detected
+            var spottingPower = CalculateSpottingPower((Map) parms.target);
+            if (spottingPower < new IntRange(0, 100).RandomInRange)
+            {
+                return false;
+            }
+
             // Delay
-            IDelayHolder delay = DelayRaid(parms, incidentDef);
+            var delay = DelayRaid(parms, incidentDef);
 
             // Indentify type
-            IncidentDef spottedType = TryIdentifyType(parms, incidentDef, spottingPower);
+            var spottedType = TryIdentifyType(parms, incidentDef, spottingPower);
 
             // Send Letter and Alert
             NotifySpotted(parms, delay, spottedType);
@@ -124,10 +140,10 @@ namespace Spotted
 
         public static bool IncidentIsQueued(IncidentParms parms, IncidentDef incidentDef)
         {
-            IEnumerator qIncidents = Find.Storyteller.incidentQueue.GetEnumerator();
+            var qIncidents = Find.Storyteller.incidentQueue.GetEnumerator();
             while (qIncidents.MoveNext())
             {
-                QueuedIncident qi = (QueuedIncident)qIncidents.Current;
+                var qi = (QueuedIncident) qIncidents.Current;
                 if (qi.FiringIncident.parms == parms && qi.FiringIncident.def == incidentDef)
                 {
                     return true;

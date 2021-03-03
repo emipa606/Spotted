@@ -13,5 +13,4 @@
   <S.AccurateArrival>Display exact arrival time</S.AccurateArrival>
   <S.AccurateTooltip>Disabled - when movement is spotted an interval of time for their arrival will be displayed
   Enabled - when movement is spotted the exact arrival time is displayed</S.AccurateTooltip>
-
 </LanguageData>

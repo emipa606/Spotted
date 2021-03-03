@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <!-- General letter description -->
-
   <SpottedByColonists.label>spotted by colonists</SpottedByColonists.label>
   <SpottedByWanderer.label>spotted by wanderer</SpottedByWanderer.label>
   <SpottedByVision.label>spotted by vision</SpottedByVision.label>
@@ -13,10 +11,7 @@
   <SpottedByScanner.label>spotted by scanner</SpottedByScanner.label>
   <SpottedByMachineLearning.label>spotted by machine learning</SpottedByMachineLearning.label>
   <SpottedByTechConsistent.label>spotted by consistent technology </SpottedByTechConsistent.label>
-
-
   <!-- Letter type description -->
-
   <TypeIdentifiedBase_1.label>type identified base_1</TypeIdentifiedBase_1.label>
   <TypeIdentifiedBase_2.label>type identified base_2</TypeIdentifiedBase_2.label>
   <TypeIdentifiedTower.label>type identified tower</TypeIdentifiedTower.label>
@@ -24,6 +19,4 @@
   <TypeUnIdentified_1.label>type unidentified</TypeUnIdentified_1.label>
   <TypeUnIdentified_2.label>type unidentified</TypeUnIdentified_2.label>
   <TypeUnIdentifiedQuarrel.label>type unidentified</TypeUnIdentifiedQuarrel.label>
-
-
 </LanguageData>

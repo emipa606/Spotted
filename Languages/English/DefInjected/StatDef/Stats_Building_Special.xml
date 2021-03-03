@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <SpottingPower.label>spotting power</SpottingPower.label>
   <SpottingPower.description>The chance it adds to colony's overall spotting power</SpottingPower.description>
-
   <SpottingRange.label>spotting range</SpottingRange.label>
   <SpottingRange.description>The range it adds to colony's overall spotting range</SpottingRange.description>
-
-
 </LanguageData>
