@@ -5,8 +5,8 @@ namespace Spotted
 {
     public struct AlertIncident
     {
-        IDelayHolder delay;
-        string description;
+        private IDelayHolder delay;
+        private string description;
 
         public AlertIncident(IDelayHolder delay, IncidentDef incidentDef) : this()
         {
@@ -15,7 +15,7 @@ namespace Spotted
 
         public void SetAlertIncident(IDelayHolder delay, IncidentDef incidentDef)
         {
-            string alertDescription = incidentDef == null ? "S.UnidentifiedMovement".Translate() : incidentDef.LabelCap;
+            string alertDescription = incidentDef?.LabelCap ?? "S.UnidentifiedMovement".Translate();
 
             this.delay = delay;
             description = alertDescription;

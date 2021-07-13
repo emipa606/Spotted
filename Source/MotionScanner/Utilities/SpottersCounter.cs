@@ -1,14 +1,11 @@
 ﻿using RimWorld;
-using System.Collections.Generic;
 using Verse;
 
 namespace Spotted
 {
-    class SpottersCounter
+    internal class SpottersCounter
     {
-        private Map map;
-
-        private delegate bool CountDetails(Thing item);
+        private readonly Map map;
 
         public SpottersCounter(Map map)
         {
@@ -17,20 +14,22 @@ namespace Spotted
 
         public int ActiveColonistsCount()
         {
-            return map == null ? 0 : map.mapPawns.ColonistsSpawnedCount;
+            return map?.mapPawns.ColonistsSpawnedCount ?? 0;
         }
 
         public int WatchtowersCount()
         {
-            if(map == null)
+            if (map == null)
             {
                 return 0;
             }
 
-            return GetThingCount(map, ThingDefOf.Watchtower, delegate (Thing item)
+            return GetThingCount(map, ThingDefOf.Watchtower, delegate(Thing item)
             {
                 if (item.Faction == Find.FactionManager.OfPlayer)
+                {
                     return true;
+                }
 
                 return false;
             });
@@ -38,20 +37,22 @@ namespace Spotted
 
         public int PoweredMotionScannersCount()
         {
-            if(map == null)
+            if (map == null)
             {
                 return 0;
             }
 
-            return GetThingCount(map, ThingDefOf.MotionScanner, delegate (Thing item)
+            return GetThingCount(map, ThingDefOf.MotionScanner, delegate(Thing item)
             {
-                if(item.Faction == Find.FactionManager.OfPlayer)
+                if (item.Faction != Find.FactionManager.OfPlayer)
                 {
-                    CompPowerTrader compPowerTrader = item.TryGetComp<CompPowerTrader>();
-                    if (compPowerTrader == null || compPowerTrader.PowerOn)
-                    {
-                        return true;
-                    }
+                    return false;
+                }
+
+                var compPowerTrader = item.TryGetComp<CompPowerTrader>();
+                if (compPowerTrader == null || compPowerTrader.PowerOn)
+                {
+                    return true;
                 }
 
                 return false;
@@ -60,30 +61,32 @@ namespace Spotted
 
         public int PoweredSatelliteController()
         {
-            if(map == null)
+            if (map == null)
             {
                 return 0;
             }
 
-            return GetThingCount(map, ThingDefOf.SatelliteController, delegate (Thing item)
+            return GetThingCount(map, ThingDefOf.SatelliteController, delegate(Thing item)
             {
-                if (item.Faction == Find.FactionManager.OfPlayer)
+                if (item.Faction != Find.FactionManager.OfPlayer)
                 {
-                    CompPowerTrader compPowerTrader = item.TryGetComp<CompPowerTrader>();
-                    if (compPowerTrader == null || compPowerTrader.PowerOn)
-                    {
-                        return true;
-                    }
+                    return false;
+                }
+
+                var compPowerTrader = item.TryGetComp<CompPowerTrader>();
+                if (compPowerTrader == null || compPowerTrader.PowerOn)
+                {
+                    return true;
                 }
 
                 return false;
             });
         }
 
-        private int GetThingCount(Map map, ThingDef def, CountDetails action)
+        private int GetThingCount(Map currentMap, ThingDef def, CountDetails action)
         {
-            int count = 0;
-            List<Thing> list = map.listerThings.ThingsMatching(ThingRequest.ForDef(def));
+            var count = 0;
+            var list = currentMap.listerThings.ThingsMatching(ThingRequest.ForDef(def));
             foreach (var item in list)
             {
                 if (action(item))
@@ -94,5 +97,7 @@ namespace Spotted
 
             return count;
         }
+
+        private delegate bool CountDetails(Thing item);
     }
 }

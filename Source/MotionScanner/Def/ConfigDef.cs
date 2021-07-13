@@ -3,9 +3,9 @@ using Verse;
 
 namespace Spotted
 {
-    class ConfigDef : Def
+    internal class ConfigDef : Def
     {
-        private List<string> args = new List<string>();
+        private readonly List<string> args = new List<string>();
 
         public List<string> GetArgs()
         {

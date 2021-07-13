@@ -3,11 +3,9 @@ using Verse;
 
 namespace Spotted
 {
-    public enum Condition { built, notbuilt, researched, notresearched, powered, notpowered}
-
     public static class ConditionEvaluator
     {
-        private static object[] args = new object[] { };
+        private static object[] args = { };
 
         public static void SetArgs(object[] _args)
         {
@@ -31,24 +29,26 @@ namespace Spotted
             {
                 return false;
             }
-            
-            Map map = (Map)args[0];
+
+            var map = (Map) args?[0];
             if (map == null)
             {
                 return false;
             }
 
-            ThingDef buildingDef = (ThingDef)def;
+            var buildingDef = (ThingDef) def;
             if (buildingDef == null)
+            {
                 return false;
+            }
 
-            return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0 ? true : false;
+            return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0;
         }
 
         public static bool EvaluateResearched(Def def)
         {
-            ResearchProjectDef researchDef = (ResearchProjectDef)def;
-            return researchDef == null ? false : researchDef.IsFinished;
+            var researchDef = (ResearchProjectDef) def;
+            return researchDef is {IsFinished: true};
         }
 
         public static bool EvaluatePowered(Def def)
@@ -58,13 +58,13 @@ namespace Spotted
                 return false;
             }
 
-            Map map = (Map)args[0];
-            if(map == null)
+            var map = (Map) args?[0];
+            if (map == null)
             {
                 return false;
             }
 
-            ThingDef buildingDef = (ThingDef)def;
+            var buildingDef = (ThingDef) def;
             if (buildingDef == null)
             {
                 return false;

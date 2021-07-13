@@ -1,11 +1,11 @@
-﻿using RimWorld;
-using System;
+﻿using System;
 using System.Text;
+using RimWorld;
 using Verse;
 
 namespace Spotted
 {
-    class RangedDelayHolder : DelayHolder
+    internal class RangedDelayHolder : DelayHolder
     {
         private int leftValue;
         private int rightValue;
@@ -27,10 +27,10 @@ namespace Spotted
 
         private string ToStringRange(int left, int right)
         {
-            StringBuilder rangeDate = new StringBuilder();
-            rangeDate.Append(GenDate.ToStringTicksToPeriodVerbose(left, true, true));
+            var rangeDate = new StringBuilder();
+            rangeDate.Append(left.ToStringTicksToPeriodVerbose());
             rangeDate.Append(" - ");
-            rangeDate.Append(GenDate.ToStringTicksToPeriodVerbose(right, true, true));
+            rangeDate.Append(right.ToStringTicksToPeriodVerbose());
 
             return rangeDate.ToString();
         }
@@ -52,11 +52,11 @@ namespace Spotted
 
         private void InitRange()
         {
-            Random random = new Random();
-            float interval = random.Next(50) / 10.0f;
+            var random = new Random();
+            var interval = random.Next(50) / 10.0f;
 
-            leftValue = delay - random.Next((int)(interval * GenDate.TicksPerHour));
-            rightValue = delay + random.Next((int)(interval * GenDate.TicksPerHour));
+            leftValue = delay - random.Next((int) (interval * GenDate.TicksPerHour));
+            rightValue = delay + random.Next((int) (interval * GenDate.TicksPerHour));
         }
     }
 }

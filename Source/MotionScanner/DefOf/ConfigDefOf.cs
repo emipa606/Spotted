@@ -3,7 +3,7 @@
 namespace Spotted
 {
     [DefOf]
-    static class ConfigDefOf
+    internal static class ConfigDefOf
     {
         public static ConfigDef IncidentConfig;
 

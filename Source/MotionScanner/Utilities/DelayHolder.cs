@@ -3,7 +3,7 @@ using Verse;
 
 namespace Spotted
 {
-    class DelayHolder : IDelayHolder
+    internal class DelayHolder : IDelayHolder
     {
         protected readonly int delay;
         protected readonly int triggerTime;
@@ -31,17 +31,17 @@ namespace Spotted
 
         public virtual string ToStringGlobalDelayToPeriod()
         {
-            return GenDate.ToStringTicksToPeriodVerbose(GetGlobalDelay(), true, true);
+            return GetGlobalDelay().ToStringTicksToPeriodVerbose();
         }
 
         public virtual string ToStringRelativeDelayToPeriod()
         {
-            return GenDate.ToStringTicksToPeriodVerbose(GetRelativeDelay(), true, true);
+            return GetRelativeDelay().ToStringTicksToPeriodVerbose();
         }
 
         public virtual string ToStringRemainingDelayToPeriod()
         {
-            return GenDate.ToStringTicksToPeriodVerbose(GetRemainingTicks(), true, true);
+            return GetRemainingTicks().ToStringTicksToPeriodVerbose();
         }
     }
 }

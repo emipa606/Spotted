@@ -45,7 +45,7 @@ namespace Spotted
 
             var spottersCounter = new SpottersCounter((Map) parms.target);
 
-            var modifier = .0f;
+            float modifier;
             try
             {
                 modifier = SpottedSettings.GetModifiersDictionary()[parms.raidArrivalMode.defName];
@@ -86,7 +86,7 @@ namespace Spotted
 
             var multiplier = .1f;
             if (ResearchProjectDefOf.AdvancedScoutingTehniques.IsFinished &&
-                (parms.target as Map).listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.SatelliteController))
+                ((Map) parms.target).listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.SatelliteController))
             {
                 multiplier = 1f;
             }
@@ -144,7 +144,7 @@ namespace Spotted
             while (qIncidents.MoveNext())
             {
                 var qi = (QueuedIncident) qIncidents.Current;
-                if (qi.FiringIncident.parms == parms && qi.FiringIncident.def == incidentDef)
+                if (qi?.FiringIncident.parms == parms && qi?.FiringIncident.def == incidentDef)
                 {
                     return true;
                 }
