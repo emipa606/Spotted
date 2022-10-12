@@ -1,6 +1,6 @@
 # Spotted
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of TGPArchers mod
 https://github.com/TGPArcher/Spotted
@@ -9,25 +9,16 @@ https://github.com/TGPArcher/Spotted
 - Ally help and Royal Aid should no longer be delayed
 - Any quest-related incident will be ignored
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
-
-[table]
-	[tr]
-		[td]https://invite.gg/Mlie]![Image](https://i.imgur.com/zdzzBrc.png)
-[/td]
-		[td]https://github.com/emipa606/Spotted]![Image](https://i.imgur.com/kTkpTOE.png)
-[/td]
-	[/tr]
-[/table]
 	
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 
 Have you ever wondered how do raiders/caravans/animals manage to reach your colony unnoticed?
 Well this mod fixes that by adding a chance for your colonists to spot them valuable time before they reach your colony.
 But sometimes they are more sneaky, to counter this new buildings have been added to the game which increase the chance to spot any movement outside your colonies.
-Make sure your colonist know everything which moves around, don&apos;t get caught unprepared.
+Make sure your colonist know everything which moves around, don't get caught unprepared.
 	
 More details:
  * Buildings are unlocked by researching the Spotted Research Tree
@@ -45,7 +36,7 @@ License:
  Do what you want, but give the author credit.
 
 
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 

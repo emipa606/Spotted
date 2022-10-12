@@ -1,12 +1,11 @@
-﻿namespace Spotted
+﻿namespace Spotted;
+
+public interface IDelayHolder
 {
-    public interface IDelayHolder
-    {
-        int GetRelativeDelay();
-        int GetGlobalDelay();
-        int GetRemainingTicks();
-        string ToStringGlobalDelayToPeriod();
-        string ToStringRelativeDelayToPeriod();
-        string ToStringRemainingDelayToPeriod();
-    }
+    int GetRelativeDelay();
+    int GetGlobalDelay();
+    int GetRemainingTicks();
+    string ToStringGlobalDelayToPeriod();
+    string ToStringRelativeDelayToPeriod();
+    string ToStringRemainingDelayToPeriod();
 }

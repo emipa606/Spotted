@@ -1,13 +1,12 @@
 ﻿using RimWorld;
 
-namespace Spotted
+namespace Spotted;
+
+[DefOf]
+public class StoryDefOf
 {
-    [DefOf]
-    public class StoryDefOf
+    static StoryDefOf()
     {
-        static StoryDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(StoryDefOf));
-        }
+        DefOfHelper.EnsureInitializedInCtor(typeof(StoryDefOf));
     }
 }

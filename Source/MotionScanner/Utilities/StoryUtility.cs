@@ -1,75 +1,71 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Spotted
-{
-    internal static class StoryUtility
-    {
-        private static T ClearAndReturn<T>(T value, object[] args)
-        {
-            if (args != null)
-            {
-                ConditionEvaluator.ClearArgs();
-            }
+namespace Spotted;
 
-            return value;
+internal static class StoryUtility
+{
+    private static T ClearAndReturn<T>(T value, object[] args)
+    {
+        if (args != null)
+        {
+            ConditionEvaluator.ClearArgs();
         }
 
-        public static bool MeetsRequirements(StoryDef story, object[] args = null)
+        return value;
+    }
+
+    public static bool MeetsRequirements(StoryDef story, object[] args = null)
+    {
+        if (story == null)
         {
-            if (story == null)
-            {
-                return false;
-            }
+            return false;
+        }
 
-            if (args != null)
-            {
-                ConditionEvaluator.SetArgs(args);
-            }
+        if (args != null)
+        {
+            ConditionEvaluator.SetArgs(args);
+        }
 
-            if (story.required != null)
+        if (story.required != null)
+        {
+            foreach (var requirement in story.required)
             {
-                foreach (var requirement in story.required)
+                if (!requirement.RequirementIsMeet())
                 {
-                    if (!requirement.RequirementIsMeet())
-                    {
-                        return ClearAndReturn(false, args);
-                    }
+                    return ClearAndReturn(false, args);
                 }
             }
+        }
 
-            if (story.required?.Count > 0)
-            {
-                return ClearAndReturn(true, args);
-            }
-
-            if (story.optional != null)
-            {
-                foreach (var option in story.optional)
-                {
-                    if (option.RequirementIsMeet())
-                    {
-                        return ClearAndReturn(true, args);
-                    }
-                }
-            }
-
-            if (story.optional?.Count > 0)
-            {
-                return ClearAndReturn(false, args);
-            }
-
+        if (story.required?.Count > 0)
+        {
             return ClearAndReturn(true, args);
         }
 
-        public static IEnumerable<StoryDef> MeetRequirements(this IEnumerable<StoryDef> stories, object[] args = null)
+        if (story.optional == null)
         {
-            if (args != null)
-            {
-                ConditionEvaluator.SetArgs(args);
-            }
-
-            return ClearAndReturn(stories.Where(story => MeetsRequirements(story)).ToList(), args);
+            return ClearAndReturn(!(story.optional?.Count > 0), args);
         }
+
+        foreach (var option in story.optional)
+        {
+            if (option.RequirementIsMeet())
+            {
+                return ClearAndReturn(true, args);
+            }
+        }
+
+        return ClearAndReturn(!(story.optional?.Count > 0), args);
+    }
+
+    public static IEnumerable<StoryDef> MeetRequirements(this IEnumerable<StoryDef> stories, object[] args = null)
+    {
+        if (args != null)
+        {
+            ConditionEvaluator.SetArgs(args);
+        }
+
+        return ClearAndReturn(stories.Where(story => MeetsRequirements(story)).ToList(), args);
     }
 }

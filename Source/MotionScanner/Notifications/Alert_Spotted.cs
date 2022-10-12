@@ -3,52 +3,51 @@ using System.Text;
 using RimWorld;
 using Verse;
 
-namespace Spotted
+namespace Spotted;
+
+public class Alert_Spotted : Alert
 {
-    public class Alert_Spotted : Alert
+    private static readonly List<AlertIncident> incidents = new List<AlertIncident>();
+
+    public Alert_Spotted()
     {
-        private static readonly List<AlertIncident> incidents = new List<AlertIncident>();
+        defaultLabel = "S.SpottedAlertLabel".Translate();
+        defaultPriority = AlertPriority.Medium;
+    }
 
-        public Alert_Spotted()
+    public override TaggedString GetExplanation()
+    {
+        var explanation = new StringBuilder();
+        foreach (var incident in incidents)
         {
-            defaultLabel = "S.SpottedAlertLabel".Translate();
-            defaultPriority = AlertPriority.Medium;
+            explanation.AppendLine(incident.GetDescription() + "S.Incoming".Translate() +
+                                   incident.GetDelay().ToStringRemainingDelayToPeriod());
         }
 
-        public override TaggedString GetExplanation()
+        //remove last \n
+        explanation.Remove(explanation.Length - 1, 1);
+
+        return explanation.ToString();
+    }
+
+    public override AlertReport GetReport()
+    {
+        incidents.RemoveAll(incident => incident.GetDelay().GetRemainingTicks() < 0);
+        return incidents.Count > 0;
+    }
+
+    public static void AddIncident(AlertIncident incident)
+    {
+        if (incident.GetDelay().GetGlobalDelay() < 0)
         {
-            var explanation = new StringBuilder();
-            foreach (var incident in incidents)
-            {
-                explanation.AppendLine(incident.GetDescription() + "S.Incoming".Translate() +
-                                       incident.GetDelay().ToStringRemainingDelayToPeriod());
-            }
-
-            //remove last \n
-            explanation.Remove(explanation.Length - 1, 1);
-
-            return explanation.ToString();
+            return;
         }
 
-        public override AlertReport GetReport()
-        {
-            incidents.RemoveAll(incident => incident.GetDelay().GetRemainingTicks() < 0);
-            return incidents.Count > 0;
-        }
+        incidents.Add(incident);
+    }
 
-        public static void AddIncident(AlertIncident incident)
-        {
-            if (incident.GetDelay().GetGlobalDelay() < 0)
-            {
-                return;
-            }
-
-            incidents.Add(incident);
-        }
-
-        ~Alert_Spotted()
-        {
-            incidents.Clear();
-        }
+    ~Alert_Spotted()
+    {
+        incidents.Clear();
     }
 }

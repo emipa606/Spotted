@@ -1,76 +1,70 @@
 ﻿using System.Linq;
 using Verse;
 
-namespace Spotted
+namespace Spotted;
+
+public static class ConditionEvaluator
 {
-    public static class ConditionEvaluator
+    private static object[] args = { };
+
+    public static void SetArgs(object[] _args)
     {
-        private static object[] args = { };
-
-        public static void SetArgs(object[] _args)
+        if (_args == null)
         {
-            if (_args == null)
-            {
-                ClearArgs();
-                return;
-            }
-
-            args = _args;
+            ClearArgs();
+            return;
         }
 
-        public static void ClearArgs()
+        args = _args;
+    }
+
+    public static void ClearArgs()
+    {
+        args = new object[] { };
+    }
+
+    public static bool EvaluateBuilt(Def def)
+    {
+        if (args?.Length == 0)
         {
-            args = new object[] { };
+            return false;
         }
 
-        public static bool EvaluateBuilt(Def def)
+        var map = (Map)args?[0];
+        if (map == null)
         {
-            if (args?.Length == 0)
-            {
-                return false;
-            }
-
-            var map = (Map) args?[0];
-            if (map == null)
-            {
-                return false;
-            }
-
-            var buildingDef = (ThingDef) def;
-            if (buildingDef == null)
-            {
-                return false;
-            }
-
-            return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0;
+            return false;
         }
 
-        public static bool EvaluateResearched(Def def)
+        var buildingDef = (ThingDef)def;
+        if (buildingDef == null)
         {
-            var researchDef = (ResearchProjectDef) def;
-            return researchDef is {IsFinished: true};
+            return false;
         }
 
-        public static bool EvaluatePowered(Def def)
+        return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0;
+    }
+
+    public static bool EvaluateResearched(Def def)
+    {
+        var researchDef = (ResearchProjectDef)def;
+        return researchDef is { IsFinished: true };
+    }
+
+    public static bool EvaluatePowered(Def def)
+    {
+        if (args?.Length == 0)
         {
-            if (args?.Length == 0)
-            {
-                return false;
-            }
-
-            var map = (Map) args?[0];
-            if (map == null)
-            {
-                return false;
-            }
-
-            var buildingDef = (ThingDef) def;
-            if (buildingDef == null)
-            {
-                return false;
-            }
-
-            return map.listerBuildings.ColonistsHaveBuildingWithPowerOn(buildingDef);
+            return false;
         }
+
+        var map = (Map)args?[0];
+        if (map == null)
+        {
+            return false;
+        }
+
+        var buildingDef = (ThingDef)def;
+        return buildingDef != null && map.listerBuildings.ColonistsHaveBuildingWithPowerOn(buildingDef);
     }
 }
