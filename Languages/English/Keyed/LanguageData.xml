@@ -4,22 +4,22 @@
   <S.LetterTime>They will arrive in about</S.LetterTime>
   <S.LetterQuantityUnidendified>Number of aproaching entities is unknown.</S.LetterQuantityUnidendified>
   <!-- Detected messages -->
-  <S.DetectedColonists>Colonists have detected unusual movement, coming towards your base.</S.DetectedColonists>
+  <S.DetectedColonists>Colonists have detected unusual movement, coming towards our base.</S.DetectedColonists>
   <S.DetectedWanderer>Who said wandering is bad? One the colonists has seen something moving in the distance.</S.DetectedWanderer>
-  <S.DetectedVision>One of your colonists had a vision, and others confirmed their suspicion. Something is coming.</S.DetectedVision>
-  <S.DetectedWatchtower>While resting on a watchtower, one of your colonists saw movement in the distance. Something is coming.</S.DetectedWatchtower>
-  <S.DetectedWater>While meditating, one of your colonists saw vibration in the water. Something is coming.</S.DetectedWater>
-  <S.DetectedTech>Our motion tracking technology detected unusual movement in the distance, coming towards your base.</S.DetectedTech>
-  <S.DetectedSatellite>Your satellite controller decrypted a communication from an abandoned mechanoid satellite. That satellite is sending an signal to a party telling them to go to your region.</S.DetectedSatellite>
-  <S.DetectedScanner>One of your scanners is going crazy. The colonist monitoring it suggests to prepare for a possible upcoming attack.</S.DetectedScanner>
-  <S.DetectedMachineLearning>Machine vision algorithms monitoring your sensors have determined something is moving towards your base.</S.DetectedMachineLearning>
-  <S.DetectedTechConsistent>While colonists were busy with everyday chores, spotting tech reported an unusual change. Prepare for visitors.</S.DetectedTechConsistent>
+  <S.DetectedVision>One of our colonists had a vision, and others confirmed their suspicion. Something is coming.</S.DetectedVision>
+  <S.DetectedWatchtower>While resting on a watchtower, one of our colonists saw movement in the distance. Something is coming.</S.DetectedWatchtower>
+  <S.DetectedWater>While meditating, one of our colonists saw vibrations in water. Something is coming.</S.DetectedWater>
+  <S.DetectedTech>Our motion tracking technology detected unusual movement in the distance, coming towards our base.</S.DetectedTech>
+  <S.DetectedSatellite>Our satellite controller decrypted a communication from an abandoned mechanoid satellite. That satellite is sending an signal to a party, directing them towards our region.</S.DetectedSatellite>
+  <S.DetectedScanner>One of our scanners is going crazy. The colonist monitoring it suggests to prepare for a possible upcoming attack.</S.DetectedScanner>
+  <S.DetectedMachineLearning>Machine vision algorithms monitoring sensors have determined that something is moving towards our base.</S.DetectedMachineLearning>
+  <S.DetectedTechConsistent>While colonists were busy with everyday chores, spotting technology reported an unusual change. Prepare for visitors.</S.DetectedTechConsistent>
   <!-- Type messages -->
   <S.TypeUnidentified_1>There is not enought evidence to identify what kinds of entities are coming.</S.TypeUnidentified_1>
   <S.TypeUnidentified_2>None of the colonists were able to identify aproaching entities.</S.TypeUnidentified_2>
   <S.TypeUnidentifiedQuarrel>After a heated debate over ambigious data, colonist could not determine on what kind of entity is approaching.</S.TypeUnidentifiedQuarrel>
   <S.BaseType_1>Colonists have determined that {0} is coming.</S.BaseType_1>
   <S.BaseType_2>The approaching movement is identified as {0}.</S.BaseType_2>
-  <S.TypeTower>Based on observations from a watchtower, your colonists think that is coming a {0}.</S.TypeTower>
+  <S.TypeTower>Based on observations from a watchtower, our colonists think that {0} is coming.</S.TypeTower>
   <S.TypeSattellite>Satellites have determined that {0} is coming.</S.TypeSattellite>
 </LanguageData>
