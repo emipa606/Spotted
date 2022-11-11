@@ -1,5 +1,8 @@
 # Changelog for Spotted
 
+1.4.2 - Updated language-strings, thanks brucethemoose!
+
+
 1.4.1 - Mod updated for 1.4 and passed autotests
 
 
