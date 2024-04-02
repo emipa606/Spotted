@@ -3,15 +3,8 @@ using Verse;
 
 namespace Spotted;
 
-internal class SpottersCounter
+internal class SpottersCounter(Map map)
 {
-    private readonly Map map;
-
-    public SpottersCounter(Map map)
-    {
-        this.map = map;
-    }
-
     public int ActiveColonistsCount()
     {
         return map?.mapPawns.ColonistsSpawnedCount ?? 0;

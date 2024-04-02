@@ -13,36 +13,22 @@ public class StoryCondition
     {
         var def = GenDefDatabase.GetDef(defType, defName);
 
-        if (condition == Condition.built)
+        switch (condition)
         {
-            return ConditionEvaluator.EvaluateBuilt(def);
+            case Condition.built:
+                return ConditionEvaluator.EvaluateBuilt(def);
+            case Condition.notbuilt:
+                return !ConditionEvaluator.EvaluateBuilt(def);
+            case Condition.researched:
+                return ConditionEvaluator.EvaluateResearched(def);
+            case Condition.notresearched:
+                return !ConditionEvaluator.EvaluateResearched(def);
+            case Condition.powered:
+                return ConditionEvaluator.EvaluatePowered(def);
+            case Condition.notpowered:
+                return !ConditionEvaluator.EvaluatePowered(def);
+            default:
+                return false;
         }
-
-        if (condition == Condition.notbuilt)
-        {
-            return !ConditionEvaluator.EvaluateBuilt(def);
-        }
-
-        if (condition == Condition.researched)
-        {
-            return ConditionEvaluator.EvaluateResearched(def);
-        }
-
-        if (condition == Condition.notresearched)
-        {
-            return !ConditionEvaluator.EvaluateResearched(def);
-        }
-
-        if (condition == Condition.powered)
-        {
-            return ConditionEvaluator.EvaluatePowered(def);
-        }
-
-        if (condition == Condition.notpowered)
-        {
-            return !ConditionEvaluator.EvaluatePowered(def);
-        }
-
-        return false;
     }
 }

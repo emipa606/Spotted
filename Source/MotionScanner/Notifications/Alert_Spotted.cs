@@ -7,7 +7,7 @@ namespace Spotted;
 
 public class Alert_Spotted : Alert
 {
-    private static readonly List<AlertIncident> incidents = new List<AlertIncident>();
+    private static readonly List<AlertIncident> incidents = [];
 
     public Alert_Spotted()
     {

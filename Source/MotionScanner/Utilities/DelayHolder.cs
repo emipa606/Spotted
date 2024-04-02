@@ -3,16 +3,10 @@ using Verse;
 
 namespace Spotted;
 
-internal class DelayHolder : IDelayHolder
+internal class DelayHolder(int delay) : IDelayHolder
 {
-    protected readonly int delay;
-    protected readonly int triggerTime;
-
-    public DelayHolder(int delay)
-    {
-        this.delay = delay;
-        triggerTime = Find.TickManager.TicksGame;
-    }
+    protected readonly int delay = delay;
+    protected readonly int triggerTime = Find.TickManager.TicksGame;
 
     public virtual int GetGlobalDelay()
     {

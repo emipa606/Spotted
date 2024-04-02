@@ -14,7 +14,7 @@ internal class SpottedMod : Mod
     {
         settings = GetSettings<SpottedSettings>();
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(ModLister.GetActiveModWithIdentifier("Mlie.Spotted"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     public override string SettingsCategory()

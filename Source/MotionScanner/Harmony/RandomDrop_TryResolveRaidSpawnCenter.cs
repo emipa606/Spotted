@@ -3,7 +3,8 @@ using RimWorld;
 
 namespace Spotted.Harmony;
 
-[HarmonyPatch(typeof(PawnsArrivalModeWorker_RandomDrop), "TryResolveRaidSpawnCenter")]
+[HarmonyPatch(typeof(PawnsArrivalModeWorker_RandomDrop),
+    nameof(PawnsArrivalModeWorker_RandomDrop.TryResolveRaidSpawnCenter))]
 internal static class RandomDrop_TryResolveRaidSpawnCenter
 {
     [HarmonyPostfix]

@@ -3,7 +3,8 @@ using RimWorld;
 
 namespace Spotted.Harmony;
 
-[HarmonyPatch(typeof(PawnsArrivalModeWorker_EdgeWalkInGroups), "TryResolveRaidSpawnCenter")]
+[HarmonyPatch(typeof(PawnsArrivalModeWorker_EdgeWalkInGroups),
+    nameof(PawnsArrivalModeWorker_EdgeWalkInGroups.TryResolveRaidSpawnCenter))]
 internal static class EdgeWalkInGroups_TryResolveRaidSpawnCenter
 {
     [HarmonyPostfix]

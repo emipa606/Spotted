@@ -136,6 +136,7 @@ internal static class SpotterUtility
     public static bool IncidentIsQueued(IncidentParms parms, IncidentDef incidentDef)
     {
         var qIncidents = Find.Storyteller.incidentQueue.GetEnumerator();
+        using var disposable = qIncidents as IDisposable;
         while (qIncidents.MoveNext())
         {
             var qi = (QueuedIncident)qIncidents.Current;

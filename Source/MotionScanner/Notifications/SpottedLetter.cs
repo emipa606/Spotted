@@ -44,7 +44,7 @@ internal static class SpottedLetter
     private static string GetDescription(IncidentParms parms)
     {
         var descriptionStoryDefs = DefDatabase<StoryDef>.AllDefs.Where(def => def.storyType == "Spotted.Detected")
-            .MeetRequirements(new object[] { parms.target })
+            .MeetRequirements([parms.target])
             .ToList();
         var descKey = descriptionStoryDefs.RandomElement()?.storyKey;
         return descKey?.Translate() ?? TaggedString.Empty;
@@ -54,7 +54,7 @@ internal static class SpottedLetter
     {
         var storyType = incidentDef == null ? "Spotted.UnidentifiedType" : "Spotted.IdentifiedType";
         var typeStoryDefs = DefDatabase<StoryDef>.AllDefs.Where(def => def.storyType == storyType)
-            .MeetRequirements(new object[] { parms.target })
+            .MeetRequirements([parms.target])
             .ToList();
         var descKey = typeStoryDefs.RandomElement()?.storyKey;
         return descKey == null

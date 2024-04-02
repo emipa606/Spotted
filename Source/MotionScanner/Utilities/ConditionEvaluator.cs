@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using Verse;
+﻿using Verse;
 
 namespace Spotted;
 
 public static class ConditionEvaluator
 {
-    private static object[] args = { };
+    private static object[] args = [];
 
     public static void SetArgs(object[] _args)
     {
@@ -20,7 +19,7 @@ public static class ConditionEvaluator
 
     public static void ClearArgs()
     {
-        args = new object[] { };
+        args = [];
     }
 
     public static bool EvaluateBuilt(Def def)
@@ -42,7 +41,7 @@ public static class ConditionEvaluator
             return false;
         }
 
-        return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count() != 0;
+        return map.listerBuildings.AllBuildingsColonistOfDef(buildingDef).Count != 0;
     }
 
     public static bool EvaluateResearched(Def def)

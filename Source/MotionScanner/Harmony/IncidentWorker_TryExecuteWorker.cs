@@ -1,12 +1,16 @@
 ﻿using RimWorld;
+using Verse;
 
 namespace Spotted.Harmony;
 
 internal static class IncidentWorker_TryExecuteWorker
 {
-    public static bool Prefix(IncidentWorker __instance, bool __result, ref IncidentParms parms)
+    private static readonly IncidentCategoryDef allyAssistance =
+        DefDatabase<IncidentCategoryDef>.GetNamedSilentFail("AllyAssistance");
+
+    public static bool Prefix(IncidentWorker __instance, ref IncidentParms parms)
     {
-        if (__instance.def.category == IncidentCategoryDefOf.AllyAssistance)
+        if (__instance.def.category == allyAssistance)
         {
             return true;
         }
