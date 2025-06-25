@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: spotted by colonists -->
+  <SpottedByColonists.label>spotted by colonists</SpottedByColonists.label>
+  <!-- EN: spotted by machine learning -->
+  <SpottedByMachineLearning.label>spotted by machine learning</SpottedByMachineLearning.label>
+  <!-- EN: spotted by satellite -->
+  <SpottedBySatellite.label>spotted by satellite</SpottedBySatellite.label>
+  <!-- EN: spotted by scanner -->
+  <SpottedByScanner.label>spotted by scanner</SpottedByScanner.label>
+  <!-- EN: spotted by technology -->
+  <SpottedByTech.label>spotted by technology</SpottedByTech.label>
+  <!-- EN: spotted by consistent technology  -->
+  <SpottedByTechConsistent.label>spotted by consistent technology </SpottedByTechConsistent.label>
+  <!-- EN: spotted by vision -->
+  <SpottedByVision.label>spotted by vision</SpottedByVision.label>
+  <!-- EN: spotted by wanderer -->
+  <SpottedByWanderer.label>spotted by wanderer</SpottedByWanderer.label>
+  <!-- EN: spotted by watchtower -->
+  <SpottedByWatchtower.label>spotted by watchtower</SpottedByWatchtower.label>
+  <!-- EN: spotted by water -->
+  <SpottedByWater.label>spotted by water</SpottedByWater.label>
+  <!-- EN: type identified base_1 -->
+  <TypeIdentifiedBase_1.label>type identified base_1</TypeIdentifiedBase_1.label>
+  <!-- EN: type identified base_2 -->
+  <TypeIdentifiedBase_2.label>type identified base_2</TypeIdentifiedBase_2.label>
+  <!-- EN: type identified satellite -->
+  <TypeIdentifiedSattellite.label>type identified satellite</TypeIdentifiedSattellite.label>
+  <!-- EN: type identified tower -->
+  <TypeIdentifiedTower.label>type identified tower</TypeIdentifiedTower.label>
+  <!-- EN: type unidentified -->
+  <TypeUnIdentified_1.label>type unidentified</TypeUnIdentified_1.label>
+  <!-- EN: type unidentified -->
+  <TypeUnIdentified_2.label>type unidentified</TypeUnIdentified_2.label>
+  <!-- EN: type unidentified -->
+  <TypeUnIdentifiedQuarrel.label>type unidentified</TypeUnIdentifiedQuarrel.label>
+</LanguageData>

@@ -8,12 +8,12 @@ internal static class SpotterUtility
 {
     private static readonly float ColonistSpottingPower = 1f;
 
-    private static float GetThreatScale()
+    private static float getThreatScale()
     {
         return Find.Storyteller.difficulty.threatScale;
     }
 
-    private static float CalculateSpottingPower(Map map)
+    private static float calculateSpottingPower(Map map)
     {
         if (map == null)
         {
@@ -31,12 +31,12 @@ internal static class SpotterUtility
                              ThingDefOf.SatelliteController.GetStatValueAbstract(StatDefOf.SpottingPower);
 
         var discoveryPower = (colonistPower + watchtowerPower + scannerPower + satellitePower) /
-                             (float)Math.Sqrt(GetThreatScale());
+                             (float)Math.Sqrt(getThreatScale());
 
         return discoveryPower;
     }
 
-    private static IDelayHolder CalculateDelay(IncidentParms parms)
+    private static IDelayHolder calculateDelay(IncidentParms parms)
     {
         if (parms.target == null)
         {
@@ -68,16 +68,16 @@ internal static class SpotterUtility
         return (IDelayHolder)Activator.CreateInstance(SpottedSettings.GetDelayType(), (int)delay);
     }
 
-    private static IDelayHolder DelayRaid(IncidentParms parms, IncidentDef incidentDef)
+    private static IDelayHolder delayRaid(IncidentParms parms, IncidentDef incidentDef)
     {
-        var delay = CalculateDelay(parms);
+        var delay = calculateDelay(parms);
         var qi = new QueuedIncident(new FiringIncident(incidentDef, null, parms), delay.GetGlobalDelay());
         Find.Storyteller.incidentQueue.Add(qi);
 
         return delay;
     }
 
-    private static IncidentDef TryIdentifyType(IncidentParms parms, IncidentDef incidentDef, float spottingPower)
+    private static IncidentDef tryIdentifyType(IncidentParms parms, IncidentDef incidentDef, float spottingPower)
     {
         if (!ResearchProjectDefOf.MotionScanner.IsFinished)
         {
@@ -94,7 +94,7 @@ internal static class SpotterUtility
         return spottingPower * multiplier < new IntRange(0, 100).RandomInRange ? null : incidentDef;
     }
 
-    private static void NotifySpotted(IncidentParms parms, IDelayHolder delay, IncidentDef incidentDef = null)
+    private static void notifySpotted(IncidentParms parms, IDelayHolder delay, IncidentDef incidentDef = null)
     {
         Find.LetterStack.ReceiveLetter(SpottedLetter.NewLetter(parms, delay, incidentDef));
         Alert_Spotted.AddIncident(new AlertIncident(delay, incidentDef));
@@ -115,20 +115,20 @@ internal static class SpotterUtility
         }
 
         // Detected
-        var spottingPower = CalculateSpottingPower((Map)parms.target);
+        var spottingPower = calculateSpottingPower((Map)parms.target);
         if (spottingPower < new IntRange(0, 100).RandomInRange)
         {
             return false;
         }
 
         // Delay
-        var delay = DelayRaid(parms, incidentDef);
+        var delay = delayRaid(parms, incidentDef);
 
         // Indentify type
-        var spottedType = TryIdentifyType(parms, incidentDef, spottingPower);
+        var spottedType = tryIdentifyType(parms, incidentDef, spottingPower);
 
         // Send Letter and Alert
-        NotifySpotted(parms, delay, spottedType);
+        notifySpotted(parms, delay, spottedType);
 
         return true;
     }

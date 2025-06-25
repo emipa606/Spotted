@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: motion scanner -->
+  <MotionScanner.label>motion scanner</MotionScanner.label>
+  <!-- EN: Long-range motion scanner capable of detecting enemy movement heading towards your colony at long distances -->
+  <MotionScanner.description>Long-range motion scanner capable of detecting enemy movement heading towards your colony at long distances</MotionScanner.description>
+  <!-- EN: satellite controller -->
+  <SatelliteController.label>satellite controller</SatelliteController.label>
+  <!-- EN: A powerful computer capable to connect to abandoned satellites orbiting the planet taking control, with an AI capable of analyzing data from satellites and warns you when something is threatening your colony. -->
+  <SatelliteController.description>A powerful computer capable to connect to abandoned satellites orbiting the planet taking control, with an AI capable of analyzing data from satellites and warns you when something is threatening your colony.</SatelliteController.description>
+  <!-- EN: watchtower -->
+  <Watchtower.label>watchtower</Watchtower.label>
+  <!-- EN: A watchtower to from where you can see things from afar -->
+  <Watchtower.description>A watchtower to from where you can see things from afar</Watchtower.description>
+</LanguageData>

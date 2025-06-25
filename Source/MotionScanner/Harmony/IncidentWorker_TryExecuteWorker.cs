@@ -20,10 +20,7 @@ internal static class IncidentWorker_TryExecuteWorker
             return true;
         }
 
-        if (parms == null)
-        {
-            parms = new IncidentParms();
-        }
+        parms ??= new IncidentParms();
 
         return !SpotterUtility.TryScanForMotion(parms, __instance.def);
     }

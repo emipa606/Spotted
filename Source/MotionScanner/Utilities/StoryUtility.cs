@@ -5,7 +5,7 @@ namespace Spotted;
 
 internal static class StoryUtility
 {
-    private static T ClearAndReturn<T>(T value, object[] args)
+    private static T clearAndReturn<T>(T value, object[] args)
     {
         if (args != null)
         {
@@ -15,7 +15,7 @@ internal static class StoryUtility
         return value;
     }
 
-    public static bool MeetsRequirements(StoryDef story, object[] args = null)
+    private static bool meetsRequirements(StoryDef story, object[] args = null)
     {
         if (story == null)
         {
@@ -33,30 +33,30 @@ internal static class StoryUtility
             {
                 if (!requirement.RequirementIsMeet())
                 {
-                    return ClearAndReturn(false, args);
+                    return clearAndReturn(false, args);
                 }
             }
         }
 
         if (story.required?.Count > 0)
         {
-            return ClearAndReturn(true, args);
+            return clearAndReturn(true, args);
         }
 
         if (story.optional == null)
         {
-            return ClearAndReturn(!(story.optional?.Count > 0), args);
+            return clearAndReturn(!(story.optional?.Count > 0), args);
         }
 
         foreach (var option in story.optional)
         {
             if (option.RequirementIsMeet())
             {
-                return ClearAndReturn(true, args);
+                return clearAndReturn(true, args);
             }
         }
 
-        return ClearAndReturn(!(story.optional?.Count > 0), args);
+        return clearAndReturn(!(story.optional?.Count > 0), args);
     }
 
     public static IEnumerable<StoryDef> MeetRequirements(this IEnumerable<StoryDef> stories, object[] args = null)
@@ -66,6 +66,6 @@ internal static class StoryUtility
             ConditionEvaluator.SetArgs(args);
         }
 
-        return ClearAndReturn(stories.Where(story => MeetsRequirements(story)).ToList(), args);
+        return clearAndReturn(stories.Where(story => meetsRequirements(story)).ToList(), args);
     }
 }

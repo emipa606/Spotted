@@ -10,10 +10,10 @@ public struct AlertIncident
 
     public AlertIncident(IDelayHolder delay, IncidentDef incidentDef) : this()
     {
-        SetAlertIncident(delay, incidentDef);
+        setAlertIncident(delay, incidentDef);
     }
 
-    public void SetAlertIncident(IDelayHolder delay, IncidentDef incidentDef)
+    private void setAlertIncident(IDelayHolder delay, IncidentDef incidentDef)
     {
         string alertDescription = incidentDef?.LabelCap ?? "S.UnidentifiedMovement".Translate();
 

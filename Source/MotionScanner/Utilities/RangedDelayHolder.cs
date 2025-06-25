@@ -12,20 +12,20 @@ internal class RangedDelayHolder : DelayHolder
 
     public RangedDelayHolder(int delay) : base(delay)
     {
-        InitRange();
+        initRange();
     }
 
-    private int GetGlobalAdjustedVal(int value)
+    private int getGlobalAdjustedVal(int value)
     {
         return triggerTime + value;
     }
 
-    private int GetRemainingAdjustedValue(int value)
+    private int getRemainingAdjustedValue(int value)
     {
-        return GetGlobalAdjustedVal(value) - Find.TickManager.TicksGame;
+        return getGlobalAdjustedVal(value) - Find.TickManager.TicksGame;
     }
 
-    private string ToStringRange(int left, int right)
+    private static string toStringRange(int left, int right)
     {
         var rangeDate = new StringBuilder();
         rangeDate.Append(left.ToStringTicksToPeriodVerbose());
@@ -37,20 +37,20 @@ internal class RangedDelayHolder : DelayHolder
 
     public override string ToStringGlobalDelayToPeriod()
     {
-        return ToStringRange(GetGlobalAdjustedVal(leftValue), GetGlobalAdjustedVal(rightValue));
+        return toStringRange(getGlobalAdjustedVal(leftValue), getGlobalAdjustedVal(rightValue));
     }
 
     public override string ToStringRelativeDelayToPeriod()
     {
-        return ToStringRange(leftValue, rightValue);
+        return toStringRange(leftValue, rightValue);
     }
 
     public override string ToStringRemainingDelayToPeriod()
     {
-        return ToStringRange(GetRemainingAdjustedValue(leftValue), GetRemainingAdjustedValue(rightValue));
+        return toStringRange(getRemainingAdjustedValue(leftValue), getRemainingAdjustedValue(rightValue));
     }
 
-    private void InitRange()
+    private void initRange()
     {
         var random = new Random();
         var interval = random.Next(50) / 10.0f;

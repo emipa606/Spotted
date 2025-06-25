@@ -14,7 +14,7 @@ internal class SpottersCounter(Map map)
     {
         return map == null
             ? 0
-            : GetThingCount(map, ThingDefOf.Watchtower, item => item.Faction == Find.FactionManager.OfPlayer);
+            : getThingCount(map, ThingDefOf.Watchtower, item => item.Faction == Find.FactionManager.OfPlayer);
     }
 
     public int PoweredMotionScannersCount()
@@ -24,7 +24,7 @@ internal class SpottersCounter(Map map)
             return 0;
         }
 
-        return GetThingCount(map, ThingDefOf.MotionScanner, delegate(Thing item)
+        return getThingCount(map, ThingDefOf.MotionScanner, delegate(Thing item)
         {
             if (item.Faction != Find.FactionManager.OfPlayer)
             {
@@ -43,7 +43,7 @@ internal class SpottersCounter(Map map)
             return 0;
         }
 
-        return GetThingCount(map, ThingDefOf.SatelliteController, delegate(Thing item)
+        return getThingCount(map, ThingDefOf.SatelliteController, delegate(Thing item)
         {
             if (item.Faction != Find.FactionManager.OfPlayer)
             {
@@ -55,7 +55,7 @@ internal class SpottersCounter(Map map)
         });
     }
 
-    private int GetThingCount(Map currentMap, ThingDef def, CountDetails action)
+    private static int getThingCount(Map currentMap, ThingDef def, CountDetails action)
     {
         var count = 0;
         var list = currentMap.listerThings.ThingsMatching(ThingRequest.ForDef(def));

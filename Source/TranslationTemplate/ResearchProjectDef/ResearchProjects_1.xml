@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: advanced scouting tehniques -->
+  <AdvancedScoutingTehniques.label>advanced scouting tehniques</AdvancedScoutingTehniques.label>
+  <!-- EN: Unlocks satellite controller, a powerful computer capable of connecting to orbiting satellites thus making sure almost any movement is detected and even identified. -->
+  <AdvancedScoutingTehniques.description>Unlocks satellite controller, a powerful computer capable of connecting to orbiting satellites thus making sure almost any movement is detected and even identified.</AdvancedScoutingTehniques.description>
+  <!-- EN: basic scouting tehniques -->
+  <BasicScoutingTehniques.label>basic scouting tehniques</BasicScoutingTehniques.label>
+  <!-- EN: Learn basic scouting tehniques allowing your colonists to spot moving entities. -->
+  <BasicScoutingTehniques.description>Learn basic scouting tehniques allowing your colonists to spot moving entities.</BasicScoutingTehniques.description>
+  <!-- EN: motion scanner -->
+  <MotionScanner.label>motion scanner</MotionScanner.label>
+  <!-- EN: Unlocks motion scanners which will help you detect moving entities from longer distances. -->
+  <MotionScanner.description>Unlocks motion scanners which will help you detect moving entities from longer distances.</MotionScanner.description>
+  <!-- EN: tower building -->
+  <TowerBuilding.label>tower building</TowerBuilding.label>
+  <!-- EN: Build towers which extend your view range allowing your colonists to easier spot moving entities. -->
+  <TowerBuilding.description>Build towers which extend your view range allowing your colonists to easier spot moving entities.</TowerBuilding.description>
+</LanguageData>

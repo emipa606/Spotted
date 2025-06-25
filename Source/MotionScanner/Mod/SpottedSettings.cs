@@ -6,7 +6,7 @@ namespace Spotted;
 
 internal class SpottedSettings : ModSettings
 {
-    public static IntRange allowedTimeRange = new IntRange(3, 10);
+    public static IntRange allowedTimeRange = new(3, 10);
     public static float edgeWalkInModifier = 1f;
     public static float edgeWalkInGroupsModifier = 1f;
     public static float edgeDropModifier = 1f;
