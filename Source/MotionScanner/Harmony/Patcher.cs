@@ -8,7 +8,7 @@ using Verse;
 namespace Spotted.Harmony;
 
 [StaticConstructorOnStartup]
-internal class Patcher
+internal static class Patcher
 {
     static Patcher()
     {
@@ -21,15 +21,13 @@ internal class Patcher
             where typeof(IncidentWorker).IsAssignableFrom(assemblyType)
             select assemblyType).ToArray();
 
-        foreach (var incident in listOfIncidents)
+        foreach (var incident in listOfIncidents.Where(incident =>
+                     ConfigDefOf.IncidentConfig.GetArgs().Contains(incident.FullName)))
         {
-            if (ConfigDefOf.IncidentConfig.GetArgs().Contains(incident.FullName))
-            {
-                harmony.Patch(AccessTools.Method(AccessTools.TypeByName(incident.FullName), "TryExecuteWorker"),
-                    new HarmonyMethod(
-                        typeof(IncidentWorker_TryExecuteWorker)
-                            .GetMethod(nameof(IncidentWorker_TryExecuteWorker.Prefix))));
-            }
+            harmony.Patch(AccessTools.Method(AccessTools.TypeByName(incident.FullName), "TryExecuteWorker"),
+                new HarmonyMethod(
+                    typeof(IncidentWorker_TryExecuteWorker)
+                        .GetMethod(nameof(IncidentWorker_TryExecuteWorker.Prefix))));
         }
     }
 }

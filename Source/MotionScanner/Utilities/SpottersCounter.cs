@@ -57,17 +57,8 @@ internal class SpottersCounter(Map map)
 
     private static int getThingCount(Map currentMap, ThingDef def, CountDetails action)
     {
-        var count = 0;
         var list = currentMap.listerThings.ThingsMatching(ThingRequest.ForDef(def));
-        foreach (var item in list)
-        {
-            if (action(item))
-            {
-                count++;
-            }
-        }
-
-        return count;
+        return list.Count(item => action(item));
     }
 
     private delegate bool CountDetails(Thing item);

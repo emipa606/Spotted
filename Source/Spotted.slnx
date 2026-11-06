@@ -3,4 +3,31 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="MotionScanner/Spotted.csproj" />
+  <Folder Name="/.github/">
+    <File Path="../.github/copilot-instructions.md" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Alerts.xml" />
+    <File Path="../Languages/English/Keyed/LanguageData.xml" />
+    <File Path="../Languages/English/Keyed/settings.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/Stats/">
+    <File Path="../Defs/Stats/Stats_Building_Special.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/ConfigDefs/">
+    <File Path="../Defs/ConfigDefs/ConfigDefs.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/ResearchProjectDefs/">
+    <File Path="../Defs/ResearchProjectDefs/ResearchProjects_1.xml" />
+    <File Path="../Defs/ResearchProjectDefs/ResearchTabs.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/Misc/StoryDefs/">
+    <File Path="../Defs/Misc/StoryDefs/SpottedStories.xml" />
+  </Folder>
+  <Folder Name="/XML/Defs/ThingDefs/">
+    <File Path="../Defs/ThingDefs/Buildings_Misc.xml" />
+  </Folder>
 </Solution>

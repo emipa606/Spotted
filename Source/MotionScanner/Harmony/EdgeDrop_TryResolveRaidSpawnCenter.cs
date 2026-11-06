@@ -7,8 +7,7 @@ namespace Spotted.Harmony;
     nameof(PawnsArrivalModeWorker_EdgeDrop.TryResolveRaidSpawnCenter))]
 internal static class EdgeDrop_TryResolveRaidSpawnCenter
 {
-    [HarmonyPostfix]
-    private static void Postfix(IncidentParms parms, ref bool __result)
+    public static void Postfix(IncidentParms parms, ref bool __result)
     {
         if (parms.faction.HostileTo(Faction.OfPlayer) &&
             !SpotterUtility.IncidentIsQueued(parms, IncidentDefOf.RaidEnemy))

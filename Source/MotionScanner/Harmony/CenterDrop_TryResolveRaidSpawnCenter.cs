@@ -7,8 +7,7 @@ namespace Spotted.Harmony;
     nameof(PawnsArrivalModeWorker_CenterDrop.TryResolveRaidSpawnCenter))]
 internal static class CenterDrop_TryResolveRaidSpawnCenter
 {
-    [HarmonyPostfix]
-    private static void Postfix(IncidentParms parms,
+    public static void Postfix(IncidentParms parms,
         ref bool __result)
     {
         if (parms.faction.HostileTo(Faction.OfPlayer) &&
